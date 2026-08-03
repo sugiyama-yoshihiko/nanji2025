@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exhibition｜乃 -NANJI-</title>
+<meta name="description" content="ギャラリー乃-NANJI-の展覧会情報。開催中・今後の展示、過去のアーカイブ。">
+<link rel="icon" type="image/jpeg" href="./logo.jpg">
+<link rel="apple-touch-icon" href="./logo.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nanji2025.com/exhibition.html">
+<meta property="og:title" content="Exhibition｜乃 -NANJI-">
+<meta property="og:description" content="ギャラリー乃-NANJI-の展覧会情報。開催中・今後の展示、過去のアーカイブ。">
+<meta property="og:image" content="https://nanji2025.com/hero.JPG">
+<meta property="og:site_name" content="乃 -NANJI-">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAFA;
+    --text:#333333;
+    --muted:#777777;
+    --line:#E5E1DA;
+    --serif:'Noto Serif JP', serif;
+    --sans:'Noto Sans JP', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  section[id]{scroll-margin-top:80px;}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:var(--sans);font-weight:400;line-height:1.9;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"palt";
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;transition:opacity .3s ease;}
+  a:hover{opacity:.6;}
+
+  /* Header */
+  .site-header{
+    position:fixed;top:0;left:0;width:100%;
+    padding:14px 40px;
+    display:flex;justify-content:space-between;align-items:center;
+    z-index:100;
+    background:rgba(250,250,250,.95);
+    box-shadow:0 1px 0 rgba(0,0,0,.04);
+    backdrop-filter:blur(8px);
+  }
+  .site-header .logo img{height:38px;}
+  .nav ul{display:flex;gap:28px;list-style:none;}
+  .nav a{font-family:var(--serif);font-size:14px;letter-spacing:.08em;color:var(--text);}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:30px;height:24px;position:relative;}
+  .nav-toggle span{display:block;position:absolute;left:0;width:100%;height:1px;background:var(--text);transition:.3s;}
+  .nav-toggle span:nth-child(1){top:4px;}
+  .nav-toggle span:nth-child(2){top:12px;}
+  .nav-toggle span:nth-child(3){top:20px;}
+
+  /* Page Hero */
+  .page-hero{
+    padding:160px 24px 80px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .page-hero .label{
+    font-family:var(--serif);font-size:12px;letter-spacing:.4em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:18px;
+  }
+  .page-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,4vw,44px);letter-spacing:.06em;
+    line-height:1.5;
+  }
+  .ex-quote{
+    margin-top:36px;
+    font-family:var(--serif);
+    font-size:clamp(20px,2.6vw,28px);
+    font-weight:400;line-height:1.9;letter-spacing:.06em;color:#222;
+  }
+
+  /* Exhibition list */
+  .ex-section{
+    max-width:880px;margin:0 auto;padding:80px 24px 40px;
+  }
+  .ex-section + .ex-section{padding-top:0;}
+  .ex-group-label{
+    font-family:var(--serif);font-size:12px;letter-spacing:.4em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .ex-group-title{
+    font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:.1em;
+    margin-bottom:36px;color:#1a1a1a;
+  }
+  .ex-item{
+    padding:32px 0;border-top:1px solid var(--line);
+  }
+  .ex-item:last-child{border-bottom:1px solid var(--line);}
+  .ex-item .ex-date{
+    font-family:var(--serif);font-size:13px;letter-spacing:.16em;color:var(--muted);margin-bottom:8px;
+  }
+  .ex-item .ex-title{
+    font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:.06em;
+    line-height:1.6;margin-bottom:10px;color:#1a1a1a;
+  }
+  .ex-item .ex-meta{
+    font-size:14px;color:#444;line-height:2;
+  }
+  .ex-item .ex-meta dt{
+    display:inline-block;width:5em;font-family:var(--serif);color:var(--muted);font-size:13px;letter-spacing:.1em;
+  }
+
+  /* Footer */
+  .site-footer{
+    text-align:center;padding:60px 24px 40px;
+    border-top:1px solid var(--line);margin-top:80px;
+    font-size:11px;letter-spacing:.2em;color:var(--muted);
+  }
+  .site-footer .footer-logo{margin-bottom:18px;}
+  .site-footer .footer-logo img{height:30px;margin:0 auto;}
+  .back-link{
+    display:inline-block;margin-top:40px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.16em;
+    border-bottom:1px solid var(--text);padding-bottom:2px;
+  }
+  .back-wrap{text-align:center;padding:0 24px 60px;}
+
+  /* Flyer grid */
+  .ex-flyer-grid{
+    margin:28px auto 0;max-width:1080px;
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  }
+  .ex-flyer-grid figure{margin:0;}
+  .ex-flyer-grid img{width:100%;border:1px solid var(--line);display:block;}
+  @media (max-width:768px){
+    .ex-flyer-grid{grid-template-columns:1fr;gap:12px;}
+  }
+
+  /* Per-exhibition materials (flyers, newspaper, closing) */
+  .ex-materials{margin-top:32px;padding-top:24px;border-top:1px solid var(--line);}
+  .ex-materials-label{
+    font-family:var(--serif);font-size:12px;letter-spacing:.3em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:18px;
+  }
+  .ex-materials-grid{
+    display:grid;gap:16px;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .ex-materials-grid-3{grid-template-columns:repeat(3, 1fr);}
+  .ex-materials-grid-2{grid-template-columns:repeat(2, 1fr);}
+  .ex-materials-grid figure{
+    margin:0;
+    display:flex;flex-direction:column;
+  }
+  .ex-materials-grid img{
+    width:100%;display:block;
+    aspect-ratio:1 / 1.414;       /* A4縦長で全画像のサイズを統一 */
+    object-fit:cover;
+    object-position:center;
+    border:1px solid var(--line);
+    background:#fff;
+  }
+  .ex-materials-grid figcaption{
+    margin-top:8px;
+    font-family:var(--serif);font-size:12px;color:var(--muted);
+    letter-spacing:.1em;text-align:center;
+  }
+  @media (max-width:768px){
+    .ex-materials-grid{
+      grid-template-columns:repeat(2, 1fr);gap:12px;
+    }
+    .ex-materials-grid figcaption{font-size:11px;}
+  }
+
+  @media (max-width:768px){
+    .site-header{padding:16px 20px;}
+    .nav{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(250,250,250,.98);padding:20px;}
+    .nav.open{display:block;}
+    .nav ul{flex-direction:column;gap:18px;align-items:center;}
+    .nav-toggle{display:block;}
+    .page-hero{padding:130px 20px 60px;}
+    .ex-section{padding:60px 20px 30px;}
+    .ex-item .ex-meta dt{display:block;width:auto;margin-top:8px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="index.html" class="logo"><img src="./logo.jpg" alt="乃 -NANJI-"></a>
+  <button class="nav-toggle" id="navToggle" aria-label="menu"><span></span><span></span><span></span></button>
+  <nav class="nav" id="nav">
+    <ul>
+      <li><a href="index.html#concept">About</a></li>
+      <li><a href="exhibition.html">Exhibition</a></li>
+      <li><a href="opencall.html">Open Call</a></li>
+      <li><a href="index.html#access">Access</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <p class="label">Exhibition</p>
+  <h1>展覧会情報</h1>
+</section>
+
+<!-- 開催中／今後の展示 -->
+<section class="ex-section" id="ex-current">
+  <p class="ex-group-label">Upcoming &amp; Current</p>
+  <h2 class="ex-group-title">開催中・今後の展示</h2>
+  <div class="ex-empty" hidden style="text-align:center;padding:40px 0;color:var(--muted);font-family:var(--serif);font-size:14px;letter-spacing:.16em;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    現在準備中です。次回の展示情報をお待ちください。
+  </div>
+
+  <article class="ex-item" data-end-date="2026-05-31" data-start-date="2026-03-07">
+    <p class="ex-date"><span style="color:#c14b3a;font-weight:500;letter-spacing:.1em;">＊会期延長</span>　2026.03.07 (土) – 05.31 (日)　／　木曜定休　／　14:00 – 23:00　入場無料</p>
+    <h3 class="ex-title">解け、まどろみ、湯夢を見る。</h3>
+    <p class="ex-statement" style="font-size:14px;line-height:2;color:#333;margin:14px 0 18px;letter-spacing:.04em;">
+      「暖かい湯に浸かり、湯気り、やや寒い外に出る。身体が冷め、そして湯悦する。」<br>
+      この往復のなかで、輪郭はゆるみ、思考はほどけ、身体はわずかに現実から離れていく。<br><br>
+      湯は、境界を曖昧にし、内と外、個と他者、作品と空間を知覚させます。<br>
+      身体はわずかに現実から浮き上がり、意識はどこか曖昧な場所へとずれていく。<br>
+      目覚めでもなく、眠りでもない。熱と冷のあいだに生まれる、夢の手前の状態。<br>
+      その感覚を私は「湯夢」と呼んでみます。<br><br>
+      今回の展示では、3人の作品が、それぞれ異なる温度を持ちながら、同じ湯気のなかでゆっくりと混ざり合います。伊賀の春先、まだ冷たさの残る空気のなかで、感覚が溶けていく感覚を持ち帰っていただけたら幸いです。<br>
+      <span style="display:inline-block;margin-top:10px;color:var(--muted);">— 杉山 仁彦</span>
+    </p>
+    <dl class="ex-meta">
+      <div><dt>出展作家</dt><span>杉山 仁彦 ／ 髙濱 大心 ／ 村上 可威</span></div>
+      <div><dt>キュレーション</dt><span>杉山 仁彦</span></div>
+      <div><dt>アート D.</dt><span>森田新聞社</span></div>
+      <div><dt>会　場</dt><span>乃 -NANJI-（三重県伊賀市上野西日南町1762　「一乃湯」向かい）</span></div>
+    </dl>
+
+    <!-- 関連素材 -->
+    <div class="ex-materials">
+      <p class="ex-materials-label">展示素材</p>
+      <div class="ex-materials-grid ex-materials-grid-3">
+        <figure><img src="./archive-2026-yumu-flyer.jpg" alt="解け、まどろみ、湯夢を見る。 メインフライヤー" loading="lazy"><figcaption>メインフライヤー</figcaption></figure>
+        <figure><img src="./archive-2026-yumu-newspaper.jpg" alt="乃旅 第2号（2026年3月）" loading="lazy"><figcaption>乃旅 第2号（森田新聞社）</figcaption></figure>
+        <figure><img src="./archive-2026-yumu-yumutime.jpg" alt="クロージングイベント YUMUTIME" loading="lazy"><figcaption>クロージング YUMUTIME（4/26）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== 交換キュレーション企画 イントロ ===== -->
+  <div class="ex-collab-intro" style="margin:32px 0 8px;padding:32px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;">
+    <p style="font-family:var(--serif);font-size:12px;letter-spacing:.3em;color:var(--muted);margin-bottom:14px;">
+      乃 -NANJI- ⇔ Project Space hazi｜入れ替えキュレーション企画
+    </p>
+    <p style="font-family:var(--serif);font-size:clamp(20px,2.6vw,26px);font-weight:500;line-height:1.7;letter-spacing:.06em;color:#1a1a1a;margin-bottom:10px;">
+      「私はつくってない。」「いや？つくってるよ。」
+    </p>
+    <p style="font-family:var(--serif);font-size:13px;color:var(--muted);letter-spacing:.16em;">
+      総合ディレクション：杉山 仁彦
+    </p>
+    <div class="ex-flyer-grid">
+      <figure><img src="./exhibition-2026-summer-flyer.jpg" alt="「私はつくってない。」「いや？つくってるよ。」フライヤー 表面" loading="lazy"></figure>
+      <figure><img src="./exhibition-2026-summer-details.jpg" alt="「私はつくってない。」「いや？つくってるよ。」フライヤー 詳細" loading="lazy"></figure>
+    </div>
+  </div>
+
+  <article class="ex-item" data-end-date="2026-08-23" data-start-date="2026-07-04">
+    <p class="ex-date">2026.07.04 (土) – 08.23 (日)　／　会場：乃 -NANJI-（伊賀）</p>
+    <h3 class="ex-title">止まることを許せ</h3>
+    <p class="ex-sub" style="font-family:var(--serif);font-size:13px;color:var(--muted);letter-spacing:.16em;margin-bottom:14px;">企画A｜Project Space hazi → 乃 -NANJI-（伊賀会場）</p>
+    <p class="ex-statement" style="font-size:14px;line-height:2;color:#333;margin:14px 0 18px;letter-spacing:.04em;">
+      制作時間、生活、仕事など、アートに関わり続けるための「ハードルの下げ方」を考える展覧会。アンケートや対話を通じ、鑑賞者にも多様な関わり方を提示する。
+    </p>
+    <dl class="ex-meta">
+      <div><dt>主　催</dt><span>Project Space hazi</span></div>
+      <div><dt>キュレーション</dt><span>大野 高輝</span></div>
+      <div><dt>参加作家</dt><span>飯島 小雪 ／ ゆう ／ 渡邊 李佳</span></div>
+      <div><dt>アート D.</dt><span>森田新聞社</span></div>
+      <div><dt>イベント</dt><span>後日 Instagram にてお知らせします</span></div>
+      <div><dt>会　場</dt><span>乃 -NANJI-（〒518-0848 三重県伊賀市上野西日南町1762　「一乃湯」向かい／伊賀線 茅町駅より徒歩約5分、上野市駅より徒歩約10分）</span></div>
+    </dl>
+
+    <!-- 参加作家紹介 -->
+    <details style="margin-top:24px;border-top:1px solid var(--line);padding-top:18px;">
+      <summary style="cursor:pointer;font-family:var(--serif);font-size:13px;letter-spacing:.16em;color:var(--muted);">参加作家プロフィール ＋</summary>
+      <div style="margin-top:18px;font-size:13.5px;line-height:2;color:#333;">
+        <p style="margin-bottom:18px;">
+          <span style="font-family:var(--serif);font-size:15px;font-weight:500;color:#1a1a1a;">飯島 小雪｜Koyuki Iijima</span><br>
+          〈交換日記〉、刺繍、絵画などを通して、他者との距離感や関係性のあり方を探る。会ったことのない相手と交わす〈交換日記〉や、手元に視線を落としながら行う刺繍のワークショップを起点に、言葉や身振り、預かった断片から、他者の輪郭を描き出す制作を行っている。直接的な接触や強い共有を前提とせず、緩やかにつながり、自然とほどけるような関係のあり方を探っている。
+        </p>
+        <p style="margin-bottom:18px;">
+          <span style="font-family:var(--serif);font-size:15px;font-weight:500;color:#1a1a1a;">渡邊 李佳｜Rika Watanabe</span><br>
+          現在は 2026 年度 AIR motomoto 招聘作家として熊本滞在、別府にも拠点を持ち 2 拠点で活動。帰属意識／非帰属意識をめぐる関心をもとに、映像、立体、音声、参加型作品などを制作している。近年は、「移住者と土着者」「他者と自己」といった、日常の中で見過ごされがちな境界線に着目し、制度や社会規範が身体や感覚に及ぼす作用を、ナイーブで実験的な手つきによって作品化している。
+        </p>
+        <p>
+          <span style="font-family:var(--serif);font-size:15px;font-weight:500;color:#1a1a1a;">ゆう｜Yu</span><br>
+          自然現象や物質の変化、生き物の死生観に目を向けながら、有機物と人形を組み合わせたような作品制作を行う。また、デザインフェスタなどへの出店を通して、制作物を商品として販売する活動も行っている。表現としての作品づくりと、ものを作り、陳列し、誰かの手に渡す営みを地続きに捉えながら、作家としての情熱だけに回収されない、フラットな制作のあり方を模索している。
+        </p>
+      </div>
+    </details>
+  </article>
+
+  <article class="ex-item" data-end-date="2026-07-26" data-start-date="2026-07-04">
+    <p class="ex-date">2026.07.04 (土) – 07.26 (日)　／　会場：Project Space hazi（愛知県岩倉市）</p>
+    <h3 class="ex-title">ひろい世界はそんなに好きじゃない</h3>
+    <p class="ex-sub" style="font-family:var(--serif);font-size:13px;color:var(--muted);letter-spacing:.16em;margin-bottom:14px;">企画B｜乃 -NANJI- → Project Space hazi（岩倉会場）</p>
+    <p class="ex-statement" style="font-size:14px;line-height:2;color:#333;margin:14px 0 18px;letter-spacing:.04em;">
+      何をもって作家活動と定義するのか。キュレーター（杉山・村上）がテーマを設定し、作家（高濱）がコンセプトを作り、再びキュレーターが作品を制作するというプロセスを通じ、キュレーションと制作の境界を問う実験的展示。
+    </p>
+    <dl class="ex-meta">
+      <div><dt>主　催</dt><span>乃 -NANJI-</span></div>
+      <div><dt>キュレーション</dt><span>杉山 仁彦 ／ 村上 可威</span></div>
+      <div><dt>参加作家</dt><span>杉山 仁彦 ／ 村上 可威 ／ 高濱 大心</span></div>
+      <div><dt>アート D.</dt><span>森田新聞社</span></div>
+      <div><dt>イベント</dt><span>2026.07.04 (日)、07.25 (日)</span></div>
+      <div><dt>会　場</dt><span>Project Space hazi（〒482-0043 愛知県岩倉市本町上郷裏32／名鉄犬山線「岩倉駅」より徒歩約5分　※駐車場は近隣コインパーキングをご利用ください）</span></div>
+    </dl>
+
+    <!-- 参加作家紹介 -->
+    <details style="margin-top:24px;border-top:1px solid var(--line);padding-top:18px;">
+      <summary style="cursor:pointer;font-family:var(--serif);font-size:13px;letter-spacing:.16em;color:var(--muted);">参加作家プロフィール ＋</summary>
+      <div style="margin-top:18px;font-size:13.5px;line-height:2;color:#333;">
+        <p style="margin-bottom:18px;">
+          <span style="font-family:var(--serif);font-size:15px;font-weight:500;color:#1a1a1a;">杉山 仁彦｜Yoshihiko Sugiyama</span><br>
+          2002 年生まれ。従来の陶芸設備を使用しない、仮設的な窯で焼成を行う陶器の制作を起点とした場作りや他者が持つ作品や性質、技法を起用するキュレーションの性質を含んだ制作を行うなど、作品参加者の生きている実感の獲得を目的として、陶芸の設備が持つある種の特権性や枠組みの剥奪を試みている。
+        </p>
+        <p style="margin-bottom:18px;">
+          <span style="font-family:var(--serif);font-size:15px;font-weight:500;color:#1a1a1a;">高濱 大心｜Daishin Takahama</span><br>
+          2005 年生まれ。あらゆる文化に対してその経緯と物語を探りながら、人間の生活や社会への慕わしさの理解、もしくは解体を試みる。言語表現を起点としたインスタレーションやパフォーマティブな実践、アート・プロジェクトを展開する。
+        </p>
+        <p>
+          <span style="font-family:var(--serif);font-size:15px;font-weight:500;color:#1a1a1a;">村上 可威｜Kai Murakami</span><br>
+          1999 年生まれ。日常のなかでふと立ち上がる違和感をすくい取り、立体作品として形にする方法で制作を続けてきた。誰も気に留めないような微細な現象に焦点を当て、それを拡張し、見る人の感覚をわずかに揺らがせるような状況をつくり出すことに関心がある。それは単なる造形行為ではなく、「理解できる」と「わからない」のあいだで揺れる感覚を他者と共有するための試みでもある。
+        </p>
+      </div>
+    </details>
+  </article>
+
+</section>
+
+<!-- 過去の展示 -->
+<section class="ex-section" id="ex-archive">
+  <p class="ex-group-label">Archive</p>
+  <h2 class="ex-group-title">過去の展示</h2>
+  <div class="ex-empty" hidden style="text-align:center;padding:40px 0;color:var(--muted);font-family:var(--serif);font-size:14px;letter-spacing:.16em;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    アーカイブは順次追加してまいります。
+  </div>
+
+  <article class="ex-item" data-end-date="2026-03-01" data-start-date="2026-01-10">
+    <p class="ex-date">2026.01.10 (土) – 03.01 (日)　／　木曜定休　／　14:00 – 23:00　入場無料</p>
+    <h3 class="ex-title">Series “The Ceramical Parades” – やきもの中心主義 –</h3>
+    <p class="ex-statement" style="font-size:14px;line-height:2;color:#333;margin:14px 0 18px;letter-spacing:.04em;">
+      初めての方は初めまして。以前お会いしたことがある方は、お久しぶりです。杉山 仁彦(よしひこ)です。<br><br>
+      今回の展示から3人展として、[ The Ceramical Parades ]と題した企画が進行していきます。[ やきもの中心主義 ]などと大それた用語を使用していますが、タイルやレンガ、便器を始めとし、歯のセラミック、半導体などの工業製品に至るまで、多様に発展していることも踏まえて、人間の営みは、焼き物を起点とした群像のような連なりそのものであると考えられないかと。<br><br>
+      そこで今展示では、伊賀市や温泉、陶芸に関わり深い、火や煙、陶器をテーマに、3名の作家で空間構成を行います。日々の営みや芸術を素材から考え直す、そんな展示になることを願います。<br>
+      <span style="display:inline-block;margin-top:10px;color:var(--muted);">— 杉山 仁彦</span>
+    </p>
+    <dl class="ex-meta">
+      <div><dt>出展作家</dt><span>杉山 仁彦 ／ 日比野 曜 ／ 森田 健（森田新聞社）</span></div>
+      <div><dt>キュレーション</dt><span>杉山 仁彦</span></div>
+      <div><dt>アート D.</dt><span>森田新聞社</span></div>
+      <div><dt>関連企画</dt><span>クロージングパーティ｜2026.02.28 (土) ワンドリンク制 500円　／　戯曲ライブ 17:00–17:30　／　日比野 曜 スペシャルバー 18:00–23:00</span></div>
+      <div><dt>会　場</dt><span>乃 -NANJI-（三重県伊賀市上野西日南町1762　「一乃湯」向かい）</span></div>
+    </dl>
+
+    <!-- 関連素材 -->
+    <div class="ex-materials">
+      <p class="ex-materials-label">展示素材</p>
+      <div class="ex-materials-grid ex-materials-grid-2">
+        <figure><img src="./archive-2026-parade1-flyer.jpg" alt="parade.1 やきもの中心主義 フライヤー" loading="lazy"><figcaption>parade.1 フライヤー</figcaption></figure>
+        <figure><img src="./archive-2025-parade-newspaper.jpg" alt="乃旅 第1号（2025年12月）" loading="lazy"><figcaption>乃旅 第1号（森田新聞社）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="ex-item" data-end-date="2025-12-28" data-start-date="2025-11-08">
+    <p class="ex-date">2025.11.08 (土) – 12.28 (日)　／　14:00 – 23:00　入場無料</p>
+    <h3 class="ex-title">セラミカルパレード ／ Ceramical Parede</h3>
+    <p class="ex-sub" style="font-family:var(--serif);font-size:13px;color:var(--muted);letter-spacing:.16em;margin-bottom:14px;">— 乃 -NANJI- こけら落とし展 —</p>
+    <p class="ex-statement" style="font-size:14px;line-height:2;color:#333;margin:14px 0 18px;letter-spacing:.04em;">
+      初めての方は初めまして。以前お会いしたことがある方は、お久しぶりです。杉山 仁彦(よしひこ)です。普段は、愛知県を拠点に陶芸作品を制作したり、愛知県岩倉市にある20〜30代の作家・デザイナーが共同で運営している「場七」という場所でゆるく陶芸をする場を主催したり、福島県沿岸部で焼き物文化の定着を試みたりしています。<br><br>
+      この度、三重県伊賀市を拠点に営業する一乃湯に新たに併設されるアートスペース、[ 乃 -NANJI- ] が開廊し、今後、そのディレクションを務めることとなりました。そこで今回は、そのこけら落としにあたる展覧会となる [ セラミカルパレード / Ceramical Parede ] を開催いたします。<br><br>
+      今回の [ セラミカルパレード / Ceramical Parede ] では、一乃湯の銭湯、伊賀焼、場七陶芸部のコミュニティと成果物、森田新聞社発行の森田新聞、野田悠佳のジーンズの作品らでおりなす群像を、行列のように緩やかにつながる物語として展示会場に表象させます。<br><br>
+      ひょんなことから始まったこの企画ですが、何卒、よろしくお願い申し上げます。<br>
+      <span style="display:inline-block;margin-top:10px;color:var(--muted);">— 杉山 仁彦</span>
+    </p>
+    <dl class="ex-meta">
+      <div><dt>パレード参加者</dt><span>野田 悠佳 ／ 森田新聞社 ／ 場七陶芸部</span></div>
+      <div><dt>ディレクション</dt><span>杉山 仁彦</span></div>
+      <div><dt>デザイン</dt><span>森田新聞社</span></div>
+      <div><dt>会　場</dt><span>乃 -NANJI-（三重県伊賀市上野西日南町1769　「一乃湯」向かい）</span></div>
+      <div><dt>関連リンク</dt><span><a href="https://note.com/nanji2025" target="_blank" rel="noopener" style="border-bottom:1px solid currentColor;">企画の経緯について（note）→</a></span></div>
+    </dl>
+
+    <!-- 関連素材 -->
+    <div class="ex-materials">
+      <p class="ex-materials-label">展示素材</p>
+      <div class="ex-materials-grid ex-materials-grid-2">
+        <figure><img src="./archive-2025-parade-front.jpg" alt="セラミカルパレード フライヤー 表" loading="lazy"><figcaption>フライヤー 表</figcaption></figure>
+        <figure><img src="./archive-2025-parade-back.jpg" alt="セラミカルパレード フライヤー 裏" loading="lazy"><figcaption>フライヤー 裏</figcaption></figure>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Instagram feed -->
+<section class="ex-section" style="padding-bottom:80px;">
+  <p class="ex-group-label">Latest Posts</p>
+  <h2 class="ex-group-title">最新の展示風景（Instagram）</h2>
+  <div style="position:relative;width:100%;padding-bottom:66.67%;overflow:hidden;">
+    <iframe src="https://snapwidget.com/embed/1123207"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+      allowtransparency="true" frameborder="0" scrolling="no"
+      title="Posts from Instagram - @nanji.2025"></iframe>
+  </div>
+</section>
+
+<div class="back-wrap">
+  <a href="index.html" class="back-link">← Back to Top</a>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-logo"><img src="./logo.jpg" alt="乃 -NANJI-"></div>
+  <p>© 2026 NANJI Gallery, Iga.</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+
+  /* ========================================================
+     Exhibition auto-archive
+     - 各 .ex-item に data-end-date="YYYY-MM-DD" を付ける
+     - 終了日 < 今日 の展示は自動で Archive セクションへ移動
+     - Current は開始日昇順（近い順）、Archive は終了日降順（新しい順）でソート
+     - 進行中の継続展示は data-end-date="2099-12-31" を指定
+  ======================================================== */
+  (function autoArchive(){
+    const current = document.getElementById('ex-current');
+    const archive = document.getElementById('ex-archive');
+    if(!current || !archive) return;
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    // 1. Currentから終了済みをArchiveへ移動
+    current.querySelectorAll('.ex-item').forEach(item => {
+      const end = item.dataset.endDate;
+      if(!end) return;
+      const endDate = new Date(end);
+      if(endDate < today){
+        archive.appendChild(item);
+      }
+    });
+
+    // 2. ソート
+    const sortItems = (container, getKey, desc=false) => {
+      const items = Array.from(container.querySelectorAll('.ex-item'));
+      items.sort((a,b) => {
+        const ka = new Date(getKey(a)).getTime();
+        const kb = new Date(getKey(b)).getTime();
+        return desc ? kb - ka : ka - kb;
+      });
+      items.forEach(it => container.appendChild(it));
+    };
+    // Current: 開始日が近い順
+    sortItems(current, el => el.dataset.startDate || el.dataset.endDate, false);
+    // Archive: 終了日が新しい順
+    sortItems(archive, el => el.dataset.endDate, true);
+
+    // 3. 空になったら「準備中」プレースホルダーを表示
+    [current, archive].forEach(sec => {
+      const empty = sec.querySelector('.ex-empty');
+      const hasItems = sec.querySelector('.ex-item');
+      if(empty) empty.hidden = !!hasItems;
+    });
+  })();
+</script>
+</body>
+</html>

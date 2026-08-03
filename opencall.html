@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Call｜乃 -NANJI-</title>
+<meta name="description" content="乃 -NANJI- が主催する公募のお知らせ。2027年通年プログラムのキュレーター公募。">
+<link rel="icon" type="image/jpeg" href="./logo.jpg">
+<link rel="apple-touch-icon" href="./logo.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nanji2025.com/opencall.html">
+<meta property="og:title" content="Open Call｜乃 -NANJI-">
+<meta property="og:description" content="乃 -NANJI- が主催する公募。2027年通年プログラムのキュレーター公募。">
+<meta property="og:image" content="https://nanji2025.com/hero.JPG">
+<meta property="og:site_name" content="乃 -NANJI-">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAFA;
+    --text:#333333;
+    --muted:#777777;
+    --line:#E5E1DA;
+    --accent:#c14b3a;
+    --serif:'Noto Serif JP', serif;
+    --sans:'Noto Sans JP', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  section[id]{scroll-margin-top:80px;}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:var(--sans);font-weight:400;line-height:1.9;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"palt";
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;transition:opacity .3s ease;}
+  a:hover{opacity:.6;}
+
+  /* Header */
+  .site-header{
+    position:fixed;top:0;left:0;width:100%;
+    padding:14px 40px;
+    display:flex;justify-content:space-between;align-items:center;
+    z-index:100;
+    background:rgba(250,250,250,.95);
+    box-shadow:0 1px 0 rgba(0,0,0,.04);
+    backdrop-filter:blur(8px);
+  }
+  .site-header .logo img{height:38px;}
+  .nav ul{display:flex;gap:28px;list-style:none;}
+  .nav a{font-family:var(--serif);font-size:14px;letter-spacing:.08em;color:var(--text);}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:30px;height:24px;position:relative;}
+  .nav-toggle span{display:block;position:absolute;left:0;width:100%;height:1px;background:var(--text);transition:.3s;}
+  .nav-toggle span:nth-child(1){top:4px;}
+  .nav-toggle span:nth-child(2){top:12px;}
+  .nav-toggle span:nth-child(3){top:20px;}
+
+  /* Page Hero */
+  .page-hero{
+    padding:160px 24px 80px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .page-hero .label{
+    font-family:var(--serif);font-size:12px;letter-spacing:.4em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:18px;
+  }
+  .page-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,4vw,44px);letter-spacing:.06em;
+    line-height:1.5;margin-bottom:28px;
+  }
+  .page-hero .hero-lead{
+    max-width:640px;margin:0 auto;
+    font-family:var(--serif);font-size:15.5px;line-height:2.1;letter-spacing:.04em;color:#444;
+  }
+
+  /* Open Call section */
+  .oc-section{
+    max-width:880px;margin:0 auto;padding:100px 24px 40px;
+  }
+  .oc-section + .oc-section{
+    border-top:1px solid var(--line);
+    margin-top:40px;padding-top:100px;
+  }
+  .oc-label{
+    font-family:var(--serif);font-size:12px;letter-spacing:.4em;color:var(--accent);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .oc-title{
+    font-family:var(--serif);font-size:clamp(24px,3vw,30px);font-weight:500;
+    letter-spacing:.06em;line-height:1.5;
+    margin-bottom:36px;color:#1a1a1a;
+  }
+  .oc-intro{
+    margin-bottom:48px;
+    font-size:15px;line-height:2.1;color:#333;
+    letter-spacing:.04em;
+  }
+  .oc-intro p + p{margin-top:16px;}
+  .oc-intro .note{
+    margin-top:24px;padding:18px 22px;
+    background:#fff;border-left:3px solid var(--accent);
+    font-size:13.5px;line-height:1.9;color:#555;
+  }
+
+  /* Meta dl */
+  .oc-meta{
+    margin:0 0 48px;
+    border-top:1px solid var(--line);
+  }
+  .oc-meta > div{
+    display:flex;align-items:flex-start;gap:24px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .oc-meta dt{
+    flex-shrink:0;width:160px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.18em;
+    color:var(--muted);padding-top:2px;
+  }
+  .oc-meta dd{
+    flex:1;font-size:14.5px;line-height:1.9;letter-spacing:.04em;
+    color:#1a1a1a;
+  }
+  .oc-meta dd a{border-bottom:1px solid currentColor;}
+  .oc-meta dd .accent{color:var(--accent);font-weight:500;}
+
+  /* Subheads & lists */
+  .oc-subhead{
+    font-family:var(--serif);font-size:15px;font-weight:500;
+    letter-spacing:.12em;color:#1a1a1a;
+    margin:40px 0 14px;
+    padding-bottom:8px;border-bottom:1px solid var(--line);
+  }
+  .oc-text{font-size:14.5px;line-height:2;color:#333;letter-spacing:.04em;}
+  .oc-list{
+    list-style:none;padding:0;margin:0;
+  }
+  .oc-list li{
+    position:relative;padding:8px 0 8px 22px;
+    font-size:14.5px;line-height:1.9;color:#333;letter-spacing:.04em;
+  }
+  .oc-list li::before{
+    content:"・";position:absolute;left:6px;top:8px;
+    color:var(--muted);
+  }
+  .oc-list-num{counter-reset:item;list-style:none;padding:0;margin:0;}
+  .oc-list-num li{
+    counter-increment:item;
+    position:relative;padding:8px 0 8px 32px;
+    font-size:14.5px;line-height:1.9;color:#333;letter-spacing:.04em;
+  }
+  .oc-list-num li::before{
+    content:counter(item) ".";position:absolute;left:6px;top:8px;
+    font-family:var(--serif);color:var(--accent);font-weight:500;
+  }
+  .oc-list-num li.oc-note{counter-increment:none;padding-left:6px;}
+  .oc-list-num li.oc-note::before{content:none;}
+
+  /* Schedule grid for クール */
+  .oc-schedule{
+    display:grid;grid-template-columns:repeat(2, 1fr);gap:16px;
+    margin:8px 0;
+  }
+  .oc-schedule div{
+    padding:14px 16px;background:#fff;border:1px solid var(--line);
+    font-size:13.5px;letter-spacing:.06em;
+  }
+  .oc-schedule div .label{
+    display:block;font-family:var(--serif);font-size:11px;letter-spacing:.3em;
+    color:var(--muted);margin-bottom:4px;
+  }
+  @media (max-width:600px){
+    .oc-schedule{grid-template-columns:1fr;}
+  }
+
+  /* Venue slideshow */
+  .oc-venue-slider{
+    position:relative;margin:16px 0 8px;
+    max-width:860px;margin-left:auto;margin-right:auto;
+  }
+  .oc-venue-stage{
+    position:relative;width:100%;aspect-ratio:4 / 3;
+    background:#f5f4f1;border:1px solid var(--line);overflow:hidden;
+  }
+  .oc-venue-stage img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;opacity:0;transition:opacity .6s ease;
+  }
+  .oc-venue-stage img.is-active{opacity:1;}
+  .oc-venue-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:44px;height:44px;border:none;background:rgba(255,255,255,.85);
+    color:#222;font-size:20px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s;
+  }
+  .oc-venue-nav:hover{background:#fff;}
+  .oc-venue-prev{left:10px;}
+  .oc-venue-next{right:10px;}
+  .oc-venue-meta{
+    display:flex;align-items:center;justify-content:center;gap:18px;
+    margin-top:14px;font-family:var(--serif);font-size:12px;
+    letter-spacing:.25em;color:var(--muted);
+  }
+  .oc-venue-dots{display:flex;gap:8px;}
+  .oc-venue-dots button{
+    width:7px;height:7px;border-radius:50%;border:none;padding:0;
+    background:#d6d3cd;cursor:pointer;transition:background .2s;
+  }
+  .oc-venue-dots button.is-active{background:#444;}
+  @media (max-width:600px){
+    .oc-venue-nav{width:36px;height:36px;font-size:16px;}
+  }
+
+  /* Contact */
+  .oc-contact{
+    max-width:680px;margin:60px auto 0;
+    padding:60px 24px 80px;text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .oc-contact p{
+    font-family:var(--serif);font-size:15px;letter-spacing:.06em;color:#444;
+    margin-bottom:20px;
+  }
+  .oc-contact a{
+    display:inline-block;
+    font-family:var(--serif);font-size:18px;letter-spacing:.12em;
+    border-bottom:1px solid var(--text);padding-bottom:4px;
+  }
+
+  /* Footer */
+  .site-footer{
+    text-align:center;padding:60px 24px 40px;
+    border-top:1px solid var(--line);
+    font-size:11px;letter-spacing:.2em;color:var(--muted);
+  }
+  .site-footer .footer-logo{margin-bottom:18px;}
+  .site-footer .footer-logo img{height:30px;margin:0 auto;}
+  .back-link{
+    display:inline-block;margin-top:40px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.16em;
+    border-bottom:1px solid var(--text);padding-bottom:2px;
+  }
+  .back-wrap{text-align:center;padding:0 24px 60px;}
+
+  @media (max-width:768px){
+    .site-header{padding:16px 20px;}
+    .nav{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(250,250,250,.98);padding:20px;}
+    .nav.open{display:block;}
+    .nav ul{flex-direction:column;gap:18px;align-items:center;}
+    .nav-toggle{display:block;}
+    .page-hero{padding:130px 20px 60px;}
+    .oc-section{padding:70px 20px 30px;}
+    .oc-section + .oc-section{padding-top:70px;margin-top:30px;}
+    .oc-meta > div{flex-direction:column;gap:6px;}
+    .oc-meta dt{width:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="index.html" class="logo"><img src="./logo.jpg" alt="乃 -NANJI-"></a>
+  <button class="nav-toggle" id="navToggle" aria-label="menu"><span></span><span></span><span></span></button>
+  <nav class="nav" id="nav">
+    <ul>
+      <li><a href="index.html#concept">About</a></li>
+      <li><a href="exhibition.html">Exhibition</a></li>
+      <li><a href="opencall.html">Open Call</a></li>
+      <li><a href="index.html#access">Access</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <p class="label">Open Call</p>
+  <h1>公募のお知らせ</h1>
+  <p class="hero-lead">
+    乃 -NANJI- では、現在公募を行っています。<br>
+    伊賀のいとなみと響き合う、新しい企画との出会いをお待ちしています。
+  </p>
+</section>
+
+<!-- ============ Call A：脱衣所での作家公募 ============ -->
+<section class="oc-section" id="call-artist" hidden style="display:none;">
+  <p class="oc-label">Call A ─ Artist</p>
+  <h2 class="oc-title">脱衣所スペース｜出展作家 公募</h2>
+
+  <div class="oc-intro">
+    <p style="word-break:keep-all;overflow-wrap:break-word;">一乃湯の浴室に隣接する <strong>脱衣所スペース</strong>で展示を行う作家を募集します。湯上がりの感覚に呼応する作品、銭湯という日常空間に新たな視線を投げかける作品、湯気の手前と向こうをつなぐような作品——その場ならではの体験を作家とともに開いていきます。</p>
+    <p class="note">※ 脱衣所スペースは現在改装中のため、寸法・設備の詳細仕様は本要項に明記していません。今回の公募は、改装に合わせて準備するもので、応募いただいた方には個別に詳細をお伝えします。</p>
+  </div>
+
+  <dl class="oc-meta">
+    <div><dt>会　場</dt><dd>一乃湯 脱衣所（三重県伊賀市上野西日南町1762　乃 -NANJI- 隣接）</dd></div>
+    <div><dt>開催スケジュール</dt><dd>2026年7月ごろから順次展示開始<br>次回の作品更新は2027年1月ごろを予定</dd></div>
+    <div><dt>作品入れ替え</dt><dd>会期中、作家ご自身の良いタイミングで作品の入れ替えを行うことができます。<br><span style="font-size:13px;color:var(--muted);">※ 入れ替えの際は事前にご連絡ください</span></dd></div>
+    <div><dt>募集人数</dt><dd>平面 3名 ／ 立体 2名　<span style="font-size:13px;color:var(--muted);">※ 応募状況により変更の可能性あり</span></dd></div>
+    <div><dt>作品サイズ</dt><dd>平面：90cm角程度以内 ／ 立体：30cm角程度以内</dd></div>
+    <div><dt>出展料</dt><dd>無料</dd></div>
+    <div><dt>作品販売</dt><dd>会期中の販売可。<span class="accent">売上の50%を作家に還元</span></dd></div>
+    <div><dt>応募締切</dt><dd><span class="accent">2026年6月30日（火）</span></dd></div>
+    <div><dt>結果通知</dt><dd>選考後、通過者のみにメールにて通知します</dd></div>
+    <div><dt>選　考</dt><dd>乃 -NANJI- 選考委員会</dd></div>
+    <div><dt>主　催</dt><dd>乃 -NANJI-</dd></div>
+    <div><dt>応募方法</dt><dd>下記必要書類を <a href="mailto:nanji2025.11@gmail.com">nanji2025.11@gmail.com</a> 宛にお送りください</dd></div>
+  </dl>
+
+  <h3 class="oc-subhead">応募資格</h3>
+  <ul class="oc-list">
+    <li>個人・グループ・年齢・国籍・経験不問</li>
+    <li>銭湯・脱衣所という特殊な環境（湿気・温度変化・人の出入り）を理解し、その場に響く作品を提案できる方</li>
+    <li>設営・撤収にご自身で対応可能な方（運営側もサポートします）</li>
+  </ul>
+
+  <h3 class="oc-subhead">スペースについて</h3>
+  <p class="oc-text">
+    脱衣所スペースは現在改装中です。具体的な寸法・設備仕様（壁面・照明・電源・温湿度環境など）は、応募完了後に個別にご案内します。湿気・温度変化・人の出入り・浴後の身体感覚といった条件を生かす作品をご提案ください。可能であれば、応募前後に現地下見をお勧めします（要予約）。
+  </p>
+
+  <h3 class="oc-subhead">提出書類</h3>
+  <p class="oc-text" style="margin-bottom:12px;">今回は<strong>過去作を中心に募集</strong>します。展示を希望する作品の詳細をお送りください。</p>
+  <ol class="oc-list-num">
+    <li>履歴書・略歴（A4 1枚程度／フォーマット自由）</li>
+    <li>展示希望作品の詳細<br>
+      <span style="display:inline-block;margin-top:6px;font-size:13.5px;color:#555;">— 作品画像／タイトル／制作年／素材・技法／サイズ／コンセプト・ステートメント</span><br>
+      <span style="display:inline-block;margin-top:4px;font-size:13px;color:var(--muted);">※ サイズは 平面 90cm角程度以内、立体 30cm角程度以内</span>
+    </li>
+    <li>応募動機（A4 1枚程度／脱衣所環境への応答含む）</li>
+    <li>連絡先（氏名・メール・電話）</li>
+  </ol>
+
+  <h3 class="oc-subhead">主催側のサポート</h3>
+  <p class="oc-text">
+    会場貸出（無料）／広報（公式 SNS・note・チラシ印刷の協力）／搬入搬出の補助／設営相談。<br>
+    その他のサポート内容は採択後に個別に相談します。
+  </p>
+</section>
+
+<!-- ============ Call A：2027年通年キュレーション公募 ============ -->
+<section class="oc-section" id="call-curator">
+  <p class="oc-label">Call A ─ Curator</p>
+  <h2 class="oc-title">2027年 通年プログラム｜キュレーター 公募</h2>
+
+  <div class="oc-intro">
+    <p>2027年の乃 -NANJI- 本会場の通年プログラムを共に作るキュレーターを募集します。年間を4つのクール（各3ヶ月）に分け、それぞれを別のキュレーターが担当します。テーマ設定・作家選定はキュレーターの裁量。はじめてキュレーションに挑戦する方も歓迎します。</p>
+  </div>
+
+  <h3 class="oc-subhead">開催スケジュール（4クール／各3ヶ月）</h3>
+  <div class="oc-schedule">
+    <div><span class="label">第1クール</span>2027年 2月 〜 4月</div>
+    <div><span class="label">第2クール</span>2027年 5月 〜 7月</div>
+    <div><span class="label">第3クール</span>2027年 8月 〜 10月</div>
+    <div><span class="label">第4クール</span>2027年 11月 〜 2028年 1月</div>
+  </div>
+
+  <h3 class="oc-subhead">会場風景</h3>
+  <div class="oc-venue-slider" id="venueSlider">
+    <div class="oc-venue-stage" id="venueStage">
+      <img src="venue-1.jpg" alt="会場風景 1" class="is-active">
+      <img src="venue-2.jpg" alt="会場風景 2" loading="lazy">
+      <img src="venue-3.jpg" alt="会場風景 3" loading="lazy">
+      <img src="venue-4.jpg" alt="会場風景 4" loading="lazy">
+      <img src="venue-5.jpg" alt="会場風景 5" loading="lazy">
+      <img src="venue-6.jpg" alt="会場風景 6" loading="lazy">
+      <img src="venue-7.jpg" alt="会場風景 7" loading="lazy">
+      <img src="venue-8.jpg" alt="会場風景 8" loading="lazy">
+      <img src="venue-9.jpg" alt="会場風景 9" loading="lazy">
+      <button class="oc-venue-nav oc-venue-prev" id="venuePrev" aria-label="前へ">‹</button>
+      <button class="oc-venue-nav oc-venue-next" id="venueNext" aria-label="次へ">›</button>
+    </div>
+    <div class="oc-venue-meta">
+      <span id="venueIndex">01 / 09</span>
+      <span class="oc-venue-dots" id="venueDots"></span>
+    </div>
+  </div>
+  <script>
+    (function(){
+      const stage = document.getElementById('venueStage');
+      const imgs = stage.querySelectorAll('img');
+      const dots = document.getElementById('venueDots');
+      const idxEl = document.getElementById('venueIndex');
+      let i = 0, timer;
+      const total = imgs.length;
+      const pad = n => String(n).padStart(2,'0');
+      imgs.forEach((_,k)=>{
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', '画像 '+(k+1));
+        if(k===0) b.classList.add('is-active');
+        b.addEventListener('click', ()=>go(k, true));
+        dots.appendChild(b);
+      });
+      const dotEls = dots.querySelectorAll('button');
+      function go(n, manual){
+        imgs[i].classList.remove('is-active');
+        dotEls[i].classList.remove('is-active');
+        i = (n + total) % total;
+        imgs[i].classList.add('is-active');
+        dotEls[i].classList.add('is-active');
+        idxEl.textContent = pad(i+1) + ' / ' + pad(total);
+        if(manual) restart();
+      }
+      function next(){ go(i+1); }
+      function start(){ timer = setInterval(next, 4500); }
+      function restart(){ clearInterval(timer); start(); }
+      document.getElementById('venuePrev').addEventListener('click', ()=>go(i-1, true));
+      document.getElementById('venueNext').addEventListener('click', ()=>go(i+1, true));
+      start();
+    })();
+  </script>
+
+  <dl class="oc-meta" style="margin-top:48px;">
+    <div><dt>会　場</dt><dd>乃 -NANJI-（三重県伊賀市上野西日南町1762　「一乃湯」向かい）</dd></div>
+    <div><dt>募集枠</dt><dd>4枠（1クール＝1キュレーター）</dd></div>
+    <div><dt>企画形態</dt><dd>2名以上の作家を集めた<strong>グループ展を推奨</strong>。個展企画も応相談で可。</dd></div>
+    <div><dt>テーマ</dt><dd>キュレーター裁量。乃 -NANJI- のコンセプト（「日常の集積を、アートに開く。」）と響き合うものを歓迎します。</dd></div>
+    <div><dt>関わり方</dt><dd>採択キュレーターは、ディレクター（杉山 仁彦）と話し合いながら進める形を基本としますが、「最終チェック以外は杉山が干渉しない進行」も選択可能。企画規模・内容に応じて柔軟に対応します。<br><span style="font-size:13px;color:var(--muted);">（ディレクターは、主にキュレーションのサポートや最終チェックを行います。）</span></dd></div>
+    <div><dt>主催側のサポート</dt><dd>実務（会場貸出・機材調整）／広報（公式 SNS・note・チラシ印刷）／搬入搬出などをサポート。<br>その他は要相談。</dd></div>
+    <div><dt>報　酬</dt><dd>応相談（企画案の規模・内容・キュレーター経験に応じて個別調整）</dd></div>
+    <div><dt>予算について</dt><dd>限られた予算内での運営となります。十分な予算をお出しできない場合が多分にあることを、あらかじめご了承ください。詳細は採択後に個別協議します。</dd></div>
+    <div><dt>応募締切</dt><dd><span class="accent">2026年8月31日（月）</span></dd></div>
+    <div><dt>結果通知</dt><dd>選考後、通過者のみにメールにて通知します</dd></div>
+    <div><dt>選　考</dt><dd>乃 -NANJI- 選考委員会</dd></div>
+    <div><dt>主　催</dt><dd>乃 -NANJI-</dd></div>
+    <div><dt>応募方法</dt><dd>下記必要書類を <a href="mailto:nanji2025.11@gmail.com">nanji2025.11@gmail.com</a> 宛にお送りください</dd></div>
+  </dl>
+
+  <h3 class="oc-subhead">こんな方を歓迎</h3>
+  <ul class="oc-list">
+    <li>キュレーションを「制作と地続きの行為」として捉えたい方</li>
+    <li>伊賀という土地・銭湯隣接の場・古民家空間に応答する企画を立てたい方</li>
+    <li>2027年内のいずれかのクールで、企画から完了まで関わる時間を確保できる方</li>
+    <li>はじめてキュレーションに挑戦する方も歓迎</li>
+  </ul>
+
+  <h3 class="oc-subhead">提出書類</h3>
+  <ol class="oc-list-num">
+    <li>略歴（A4 1枚程度／キュレーション経験があれば記載）</li>
+    <li>企画案（A4 2〜4枚程度）<br>
+      <span style="display:inline-block;margin-top:6px;font-size:13.5px;color:#555;">— タイトル（仮）／テーマ・コンセプト／作家候補（決まっていれば）／空間構成のイメージ／関連企画案／予算規模感</span>
+    </li>
+    <li>希望クール（第1〜第4のうち希望順位を3つまで）</li>
+    <li>過去の活動資料（あれば／キュレーション・制作・執筆・場づくりなど形式問わず）</li>
+    <li>連絡先（氏名・メール・電話）</li>
+  </ol>
+
+  <h3 class="oc-subhead">選考プロセス</h3>
+  <ol class="oc-list-num">
+    <li>書類選考（締切後 約3週間）</li>
+    <li>必要に応じてオンライン面談（30分〜1時間）</li>
+    <li>結果通知（通過者のみにメールにて通知／採択者には次のステップをご案内）</li>
+    <li class="oc-note" style="margin-top:8px;font-size:13.5px;color:var(--muted);">※ ご相談も受け付けておりますので、お気軽にご連絡ください。</li>
+  </ol>
+</section>
+
+<!-- お問い合わせ -->
+<section class="oc-contact">
+  <p>ご不明な点・ご質問は、お気軽にお問い合わせください。</p>
+  <a href="mailto:nanji2025.11@gmail.com">nanji2025.11@gmail.com</a>
+</section>
+
+<div class="back-wrap">
+  <a href="index.html" class="back-link">← Back to Top</a>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-logo"><img src="./logo.jpg" alt="乃 -NANJI-"></div>
+  <p>© 2026 NANJI Gallery, Iga.</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+</script>
+</body>
+</html>

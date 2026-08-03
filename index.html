@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乃 -NANJI- | 伊賀のいとなみを、ものの温度へ。</title>
+<meta name="description" content="三重県伊賀市、一乃湯に隣接する古民家ギャラリー「乃-NANJI-」。日常の集積を、アートに開く。">
+<link rel="icon" type="image/jpeg" href="./logo.jpg">
+<link rel="apple-touch-icon" href="./logo.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nanji2025.com/">
+<meta property="og:title" content="乃 -NANJI- | 伊賀のいとなみを、ものの温度へ。">
+<meta property="og:description" content="三重県伊賀市、一乃湯に隣接する古民家ギャラリー。日常の集積を、アートに開く。">
+<meta property="og:image" content="https://nanji2025.com/hero.JPG">
+<meta property="og:site_name" content="乃 -NANJI-">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="乃 -NANJI- | 伊賀のいとなみを、ものの温度へ。">
+<meta name="twitter:description" content="三重県伊賀市、一乃湯に隣接する古民家ギャラリー。">
+<meta name="twitter:image" content="https://nanji2025.com/hero.JPG">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAFA;
+    --text:#333333;
+    --muted:#777777;
+    --line:#E5E1DA;
+    --accent:#1a1a1a;
+    --serif:'Noto Serif JP', serif;
+    --sans:'Noto Sans JP', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"palt";
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;transition:opacity .3s ease;}
+  a:hover{opacity:.6;}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:fixed;top:0;left:0;width:100%;
+    padding:14px 40px;
+    display:flex;justify-content:space-between;align-items:center;
+    z-index:100;
+    background:rgba(250,250,250,.95);
+    box-shadow:0 1px 0 rgba(0,0,0,.04);
+    backdrop-filter:blur(8px);
+  }
+  .site-header .logo img{height:38px;}
+  .nav ul{display:flex;gap:28px;list-style:none;}
+  .nav a{
+    font-family:var(--serif);
+    font-size:14px;
+    letter-spacing:.08em;
+    color:var(--text);
+  }
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:30px;height:24px;position:relative;}
+  .nav-toggle span{display:block;position:absolute;left:0;width:100%;height:1px;background:var(--text);transition:.3s;}
+  .nav-toggle span:nth-child(1){top:4px;}
+  .nav-toggle span:nth-child(2){top:12px;}
+  .nav-toggle span:nth-child(3){top:20px;}
+
+  /* ---------- First View ---------- */
+  .first-view{
+    position:relative;
+    height:100vh;       /* fallback */
+    height:100dvh;      /* iOS Safari URL バー対応 */
+    min-height:640px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;color:#fff;
+    background:#000;
+    overflow:hidden;
+  }
+  .first-view::before{
+    content:"";position:absolute;inset:0;
+    background-image:url('./hero.JPG');
+    background-size:cover;background-position:center;
+    opacity:.55;
+  }
+  @media (max-width:768px){
+    .first-view{min-height:560px;}
+    .first-view::before{background-position:center 70%;}
+  }
+  /* アンカークリック時、ヘッダーに隠れないようオフセット */
+  section[id]{scroll-margin-top:80px;}
+  .first-view::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 100%);
+  }
+  .fv-inner{position:relative;z-index:2;padding:0 24px;}
+  .fv-copy{
+    font-family:var(--serif);
+    font-size:clamp(20px,3.4vw,32px);
+    font-weight:400;
+    letter-spacing:.18em;
+    line-height:1.7;
+    margin-bottom:20px;
+  }
+  .fv-sub{
+    font-size:13px;
+    letter-spacing:.16em;
+    opacity:.85;
+    margin-bottom:48px;
+  }
+  .fv-links{
+    display:flex;flex-direction:column;align-items:center;gap:24px;
+  }
+  .fv-link{
+    display:inline-block;
+    border:1px solid rgba(255,255,255,.7);
+    color:#fff;
+    padding:14px 36px;
+    font-family:var(--serif);
+    font-size:13px;
+    letter-spacing:.2em;
+    min-width:240px;
+    text-align:center;
+    transition:background .3s, color .3s;
+  }
+  .fv-link:hover{background:#fff;color:#1a1a1a;opacity:1;}
+  .scroll-hint{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    z-index:2;color:#fff;font-size:11px;letter-spacing:.3em;writing-mode:vertical-rl;
+  }
+  .scroll-hint::after{
+    content:"";display:block;width:1px;height:40px;background:#fff;margin:14px auto 0;
+    animation:scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%{transform:scaleY(0);transform-origin:top;}
+    50%{transform:scaleY(1);transform-origin:top;}
+    51%{transform-origin:bottom;}
+    100%{transform:scaleY(0);transform-origin:bottom;}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:120px 40px;max-width:1100px;margin:0 auto;}
+  .section-label{
+    font-family:var(--serif);
+    font-size:12px;
+    letter-spacing:.4em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .section-title{
+    font-family:var(--serif);
+    font-size:clamp(26px,3.6vw,40px);
+    font-weight:500;
+    line-height:1.5;
+    margin-bottom:36px;
+    letter-spacing:.06em;
+  }
+  .section-text{
+    font-size:15px;line-height:2.1;color:#444;max-width:680px;
+  }
+
+  /* ---------- Concept ---------- */
+  .concept{text-align:center;padding-top:140px;padding-bottom:80px;}
+  .concept .section-title{
+    font-size:clamp(28px,4vw,44px);
+    margin-bottom:32px;
+  }
+  .concept-lead{
+    max-width:680px;margin:0 auto 80px;
+    font-size:15px;line-height:2.1;color:#444;
+    font-family:var(--serif);
+    letter-spacing:.04em;
+  }
+  .concept-statement{
+    max-width:620px;margin:0 auto;
+    text-align:left;
+    padding:0;
+  }
+  .statement{padding-top:80px;padding-bottom:80px;text-align:center;}
+  .statement .concept-statement{text-align:center;}
+  .statement .concept-statement p{text-indent:0;}
+  .statement .concept-statement .statement-author{text-align:center;}
+  @media (max-width:768px){
+    .statement{padding-top:60px;padding-bottom:60px;}
+  }
+  .concept-statement .statement-title{
+    font-family:var(--serif);
+    font-size:clamp(28px,4.6vw,40px);
+    font-weight:400;letter-spacing:.5em;
+    text-align:center;
+    margin-bottom:64px;
+    color:#1a1a1a;
+    position:relative;
+    padding-bottom:32px;
+  }
+  .concept-statement .statement-title::after{
+    content:"";
+    position:absolute;left:50%;bottom:0;
+    transform:translateX(-50%);
+    width:1px;height:48px;
+    background:var(--line);
+  }
+  .concept-statement p{
+    font-family:var(--serif);
+    font-size:15.5px;line-height:2.4;color:#1a1a1a;
+    margin-bottom:2.4em;letter-spacing:.06em;
+    text-indent:1em;
+    font-feature-settings:"palt";
+  }
+  .concept-statement p br{display:none;} /* 改行は段落間スペースで表現 */
+  .concept-statement .statement-closing{
+    text-indent:0;
+    font-family:var(--serif);
+    font-size:clamp(20px,2.8vw,26px);
+    font-weight:500;
+    text-align:center;letter-spacing:.2em;line-height:1.7;
+    margin-top:80px;margin-bottom:32px;color:#1a1a1a;
+    padding-top:48px;
+    position:relative;
+  }
+  .concept-statement .statement-closing::before{
+    content:"";
+    position:absolute;left:50%;top:0;
+    transform:translateX(-50%);
+    width:40px;height:1px;
+    background:var(--text);
+  }
+  .concept-statement .statement-author{
+    text-indent:0;
+    text-align:right;font-size:12px;color:var(--muted);
+    font-family:var(--serif);letter-spacing:.16em;
+    margin-top:48px;margin-bottom:0;line-height:1.7;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .concept-more{
+    display:inline-block;margin-top:80px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.16em;
+    border-bottom:1px solid var(--text);padding-bottom:2px;
+  }
+
+  /* ---------- Community ---------- */
+  .community{background:#F2EFE9;max-width:none;padding-left:0;padding-right:0;}
+  .community-inner{max-width:1100px;margin:0 auto;padding:0 40px;}
+  .padlet-frame{
+    margin-top:48px;
+    width:100%;height:600px;
+    background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:13px;letter-spacing:.1em;
+  }
+  /* Padlet埋め込みコードはここに貼り付け（iframe / width:100%; height:600px;） */
+
+  /* ---------- Exhibition ---------- */
+  .exhibition .ex-quote{
+    font-family:var(--serif);
+    font-size:clamp(22px,3vw,34px);
+    font-weight:400;
+    line-height:1.8;
+    letter-spacing:.06em;
+    margin-bottom:40px;
+    color:#222;
+  }
+  .ex-sub{
+    font-family:var(--serif);
+    font-size:16px;
+    color:var(--muted);
+    margin-bottom:24px;
+    letter-spacing:.1em;
+  }
+  .ex-list{list-style:none;margin-bottom:48px;}
+  .ex-list li{
+    padding:18px 0;
+    border-top:1px solid var(--line);
+    font-size:14px;letter-spacing:.06em;
+  }
+  .ex-list li:last-child{border-bottom:1px solid var(--line);}
+  .ex-list strong{font-family:var(--serif);font-weight:500;display:block;margin-bottom:4px;font-size:15px;}
+  .insta-frame{
+    width:100%;min-height:420px;
+    background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:14px;letter-spacing:.12em;
+    font-family:var(--serif);
+    text-align:center;padding:24px;
+    transition:background .3s ease, color .3s ease;
+  }
+  a.insta-frame:hover{background:#1a1a1a;color:#fff;opacity:1;}
+  .snap-wrap{
+    position:relative;width:100%;
+    padding-bottom:66.67%; /* 765:510 比率を維持 */
+    overflow:hidden;
+  }
+  .snap-wrap iframe{
+    position:absolute;top:0;left:0;
+    width:100%;height:100%;border:0;
+  }
+  /* Instagramウィジェット埋め込みコードはここに貼り付け（Elfsight等） */
+
+  /* ---------- Store (商品一覧) ---------- */
+  .store{
+    text-align:center;
+    padding-top:100px;padding-bottom:140px;
+  }
+  .store .section-title{
+    font-size:clamp(26px,3.4vw,38px);
+    margin-bottom:24px;
+    padding-left:.06em;
+  }
+  .store-lead{
+    max-width:580px;margin:0 auto 56px;
+    font-family:var(--serif);
+    line-height:2.1;color:#444;
+    font-size:0;
+  }
+  .store-lead span{
+    display:inline-block;
+    font-size:15px;letter-spacing:.04em;
+    padding-left:.04em;
+  }
+  .store-embed{
+    max-width:1100px;margin:0 auto;
+  }
+  .store-grid{
+    display:flex;flex-wrap:wrap;gap:28px;justify-content:center;
+  }
+  .store-grid iframe{
+    border:0;
+    background:#fff;
+    width:240px;height:380px;
+    max-width:100%;
+  }
+  .store-more{
+    display:inline-block;margin-top:64px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.16em;
+    border-bottom:1px solid var(--text);padding-bottom:2px;
+  }
+  @media (max-width:768px){
+    .store{padding-top:80px;padding-bottom:80px;}
+    .store-placeholder{padding:60px 20px;}
+  }
+
+  /* ---------- Journal / Store ---------- */
+  .links{background:#1a1a1a;color:#fff;max-width:none;}
+  .links-inner{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
+  }
+  .link-card{
+    padding:80px 40px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.15);
+    transition:background .4s ease;
+  }
+  .link-card:hover{background:rgba(255,255,255,.04);opacity:1;}
+  .link-card .label{
+    font-family:var(--serif);
+    font-size:11px;letter-spacing:.4em;color:#999;margin-bottom:14px;
+  }
+  .link-card .name{
+    font-family:var(--serif);
+    font-size:28px;letter-spacing:.16em;margin-bottom:18px;
+  }
+  .link-card .desc{font-size:13px;color:#bbb;line-height:1.9;}
+
+  /* ---------- Scene ---------- */
+  .scene{
+    text-align:center;
+    padding-top:100px;padding-bottom:140px;
+  }
+  .scene .section-title{
+    font-size:clamp(26px,3.4vw,38px);
+    margin-bottom:24px;
+  }
+  .scene-grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    grid-auto-rows:160px;
+    gap:14px;
+    max-width:1200px;
+    margin:64px auto 0;
+  }
+  .scene-grid figure{
+    margin:0;overflow:hidden;
+    background:#1a1a1a;
+  }
+  .scene-grid img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform 1.2s ease;
+  }
+  .scene-grid figure:hover img{transform:scale(1.04);}
+
+  .s-1{grid-column:span 8;grid-row:span 3;}
+  .s-2{grid-column:span 4;grid-row:span 3;}
+  .s-3{grid-column:span 4;grid-row:span 2;}
+  .s-4{grid-column:span 4;grid-row:span 2;}
+  .s-5{grid-column:span 4;grid-row:span 2;}
+  .s-6{grid-column:span 4;grid-row:span 2;}
+  .s-7{grid-column:span 8;grid-row:span 2;}
+  .s-8{grid-column:span 12;grid-row:span 4;}
+
+  .scene-credits{
+    margin-top:48px;
+    font-family:var(--serif);
+    font-size:12px;letter-spacing:.3em;color:var(--muted);
+  }
+
+  @media (max-width:768px){
+    .scene{padding-top:80px;padding-bottom:80px;}
+    .scene-grid{
+      grid-template-columns:repeat(2,1fr);
+      grid-auto-rows:130px;
+      gap:8px;
+      margin-top:48px;
+    }
+    .s-1{grid-column:span 2;grid-row:span 3;}
+    .s-2{grid-column:span 2;grid-row:span 2;}
+    .s-3,.s-4,.s-5,.s-6{grid-column:span 1;grid-row:span 2;}
+    .s-7{grid-column:span 2;grid-row:span 2;}
+    .s-8{grid-column:span 2;grid-row:span 3;}
+    .scene-credits{font-size:11px;letter-spacing:.2em;}
+  }
+
+  /* ---------- Neighborhood ---------- */
+  .neighborhood{text-align:center;}
+  .neighborhood .section-title{
+    font-size:clamp(26px,3.4vw,38px);
+    margin-bottom:24px;
+  }
+  .neighborhood-lead{
+    max-width:580px;margin:0 auto 56px;
+    font-family:var(--serif);
+    font-size:0;                       /* spanの間の空白を消す */
+    line-height:2.1;color:#444;
+  }
+  .neighborhood-lead span{
+    display:inline-block;
+    font-size:15px;letter-spacing:.04em;
+    padding-left:.04em;                /* letter-spacing による右ズレを相殺 */
+  }
+  .neighborhood .section-title{padding-left:.06em;}  /* タイトルも同様に補正 */
+  .neighborhood-card{
+    display:flex;align-items:center;gap:28px;
+    max-width:720px;margin:0 auto;
+    padding:32px 36px;
+    background:#fff;
+    border:1px solid var(--line);
+    text-align:left;
+    transition:background .35s ease, color .35s ease, border-color .35s ease, transform .35s ease;
+  }
+  .neighborhood-card:hover{
+    background:#1a1a1a;color:#fff;border-color:#1a1a1a;
+    transform:translateY(-2px);opacity:1;
+  }
+  .neighborhood-card .card-icon{
+    flex-shrink:0;color:#1a1a1a;
+    transition:color .35s ease;
+  }
+  .neighborhood-card:hover .card-icon{color:#fff;}
+  .neighborhood-card .card-body{flex:1;}
+  .neighborhood-card .card-label{
+    font-family:var(--serif);font-size:11px;letter-spacing:.3em;
+    color:var(--muted);margin-bottom:6px;
+    transition:color .35s ease;
+  }
+  .neighborhood-card:hover .card-label{color:#aaa;}
+  .neighborhood-card .card-title{
+    font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:.1em;
+    margin-bottom:6px;line-height:1.5;
+  }
+  .neighborhood-card .card-desc{
+    font-size:13px;color:#555;line-height:1.8;letter-spacing:.04em;
+    transition:color .35s ease;
+  }
+  .neighborhood-card:hover .card-desc{color:#ccc;}
+  .neighborhood-card .card-arrow{
+    flex-shrink:0;font-family:var(--serif);font-size:24px;
+    color:var(--muted);transition:transform .35s ease, color .35s ease;
+  }
+  .neighborhood-card:hover .card-arrow{color:#fff;transform:translateX(4px);}
+  @media (max-width:768px){
+    .neighborhood-card{
+      gap:18px;padding:24px 22px;
+    }
+    .neighborhood-card .card-title{font-size:17px;}
+    .neighborhood-card .card-desc{font-size:12.5px;}
+    .neighborhood-card .card-arrow{font-size:20px;}
+  }
+
+  /* ---------- Access ---------- */
+  .access-info{
+    margin-bottom:48px;
+    border-top:1px solid var(--line);
+  }
+  .access-info > div{
+    display:flex;
+    align-items:flex-start;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+    gap:32px;
+  }
+  .access-info dt{
+    flex-shrink:0;width:130px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.2em;
+    color:var(--muted);padding-top:2px;
+  }
+  .access-info dd{
+    flex:1;font-size:15px;line-height:1.9;letter-spacing:.04em;
+    font-family:var(--serif);color:#1a1a1a;
+  }
+  .access-info dd a{
+    border-bottom:1px solid currentColor;
+  }
+  .access-note{
+    display:inline-block;margin-top:8px;
+    font-family:var(--sans);font-size:12.5px;color:var(--muted);
+    letter-spacing:.04em;line-height:1.8;
+  }
+  @media (max-width:768px){
+    .access-info > div{flex-direction:column;gap:8px;padding:18px 0;}
+    .access-info dt{width:auto;}
+  }
+  .map-frame{
+    width:100%;height:420px;
+    border:1px solid var(--line);
+    display:block;
+  }
+  /* Google Maps埋め込みコードはここに貼り付け（iframe） */
+
+  /* ---------- Footer ---------- */
+  .site-footer{
+    text-align:center;padding:60px 24px 40px;
+    border-top:1px solid var(--line);
+    font-size:11px;letter-spacing:.2em;color:var(--muted);
+  }
+  .site-footer .footer-logo{margin-bottom:18px;}
+  .site-footer .footer-logo img{height:30px;margin:0 auto;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 768px){
+    .site-header{padding:16px 20px;}
+    .nav{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(250,250,250,.98);padding:20px;}
+    .nav.open{display:block;}
+    .nav ul{flex-direction:column;gap:18px;align-items:center;}
+    .nav a{color:var(--text)!important;}
+    .nav-toggle{display:block;}
+    section{padding:80px 24px;}
+    .concept-statement{padding:48px 24px;}
+    .concept-lead{margin-bottom:60px;}
+    .community-inner,.links-inner{padding:0;}
+    .links-inner{grid-template-columns:1fr;}
+    .link-card{padding:60px 24px;}
+    .padlet-frame{height:500px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header class="site-header" id="header">
+  <a href="index.html" class="logo"><img src="./logo.jpg" alt="乃 -NANJI-"></a>
+  <button class="nav-toggle" id="navToggle" aria-label="menu"><span></span><span></span><span></span></button>
+  <nav class="nav" id="nav">
+    <ul>
+      <li><a href="#concept">About</a></li>
+      <li><a href="exhibition.html">Exhibition</a></li>
+      <li><a href="opencall.html">Open Call</a></li>
+      <li><a href="#access">Access</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ============ First View ============ -->
+<section class="first-view">
+  <div class="fv-inner">
+    <p class="fv-copy">伊賀のいとなみを、<br>ものの温度へ。</p>
+    <p class="fv-sub">三重県伊賀市、一乃湯に隣接する古民家ギャラリー。</p>
+    <div class="fv-links">
+      <a href="#concept" class="fv-link">乃 -NANJI- について →</a>
+      <a href="https://yutonamisha.com/sento/ichinoyu/" target="_blank" rel="noopener" class="fv-link">一乃湯について →</a>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- ============ Concept ============ -->
+<section id="concept" class="concept">
+  <p class="section-label">Concept</p>
+  <h2 class="section-title">Unearth the Everyday.<br>日常の集積を、アートに開く。</h2>
+
+  <p class="concept-lead">
+    制度を抜け出し、生きている実感と出会う場所をつくる。<br>
+    伊賀の街に流れる時間と、人々のいとなみ。<br>
+    その地層をひとつずつ掘り起こし、ものの温度として手渡していく試みです。
+  </p>
+
+</section>
+
+<!-- ============ Scene ============ -->
+<section id="scene" class="scene">
+  <p class="section-label">Scene</p>
+  <h2 class="section-title">場の風景</h2>
+  <div class="scene-grid">
+    <figure class="s-1"><img src="./photos/m-01.jpg" alt="乃 -NANJI- 風景" loading="lazy"></figure>
+    <figure class="s-2"><img src="./photos/s-01.jpg" alt="乃 -NANJI- 風景" loading="lazy"></figure>
+    <figure class="s-3"><img src="./photos/m-02.jpg" alt="乃 -NANJI- 風景" loading="lazy"></figure>
+    <figure class="s-4"><img src="./photos/m-03.jpg" alt="乃 -NANJI- 風景" loading="lazy"></figure>
+    <figure class="s-5"><img src="./photos/m-04.jpg" alt="乃 -NANJI- 風景" loading="lazy"></figure>
+    <figure class="s-6"><img src="./photos/s-02.jpg" alt="乃 -NANJI- 風景" loading="lazy"></figure>
+    <figure class="s-7"><img src="./photos/m-05.jpg" alt="乃 -NANJI- 風景" loading="lazy"></figure>
+    <figure class="s-8"><img src="./photos/s-03.jpg" alt="乃 -NANJI- 風景" loading="lazy"></figure>
+  </div>
+  <p class="scene-credits">Photo by　三浦 毬　／　杉山 仁彦</p>
+</section>
+
+<!-- ============ Statement (杉山仁彦テキスト) ============ -->
+<section class="statement">
+  <div class="concept-statement">
+    <p>伊賀には、人の手で生活を創っている感触がありました。<br>
+    同じ陶芸の産地でも、多治見や瀬戸では出会えなかった、確かな手ざわりです。<br>
+    他の地域では工業化が進んでいるからかもしれません。</p>
+
+    <p>そして私も、この街で生きてみたいと思いました。</p>
+
+    <p>私にとって「生きてみる」とは、自分たちの手で空間を作り、人を招き、<br>
+    自分たちの居場所をつくっていくことです。<br>
+    すぐに拠点を移せるわけではないので、まずは足繁く通うことから始め、<br>
+    展覧会という形で、私の手仕事や思想が宿った空間に人を招いていきます。</p>
+
+    <p>居心地のよい場所に、他者の作品があることもあるでしょう。<br>
+    むしろ、その方が自然なのかもしれません。<br>
+    誰かが手を入れた作品を眺めながら、誰かがデザインした器で飲みものをいただく。</p>
+
+    <p>そんな営みを、この場所で重ねていきたい。<br>
+    人の手で生活を創っていく手ざわりを、訪れてくださる方々と分かち合えたら——。</p>
+
+    <p class="statement-author">— 杉山 仁彦（乃 -NANJI- ディレクター）</p>
+  </div>
+
+  <a href="https://note.com/nanji2025" target="_blank" rel="noopener" class="concept-more">
+    乃のことばをさらに読む（note）→
+  </a>
+</section>
+
+<!-- ============ Neighborhood ============ -->
+<section id="neighborhood" class="neighborhood">
+  <p class="section-label">Neighborhood</p>
+  <h2 class="section-title">伊賀のいとなみを、<br>足で巡る。</h2>
+  <p class="neighborhood-lead">
+    <span>乃 -NANJI- が選ぶ、</span><span>伊賀の街で訪れてほしい場所たち。</span><br>
+    <span>一乃湯のあとに、お気に入りの一杯を。</span><span>展示の余韻を、</span><span>街のいとなみに重ねて。</span>
+  </p>
+  <a href="https://www.google.com/maps/@34.7973553,136.0931839,13z/data=!4m2!11m1!2sTbLngJ0WASsIX4TRf-QgrD7r-R-khw"
+     target="_blank" rel="noopener" class="neighborhood-card">
+    <div class="card-icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <p class="card-label">Google Maps｜セレクトリスト</p>
+      <p class="card-title">伊賀のおすすめスポット</p>
+      <p class="card-desc">食・喫茶・店・場所——乃 -NANJI- が選ぶ近隣の行き先一覧。</p>
+    </div>
+    <span class="card-arrow" aria-hidden="true">→</span>
+  </a>
+</section>
+
+<!-- ============ Store (商品一覧) ============ -->
+<section id="store-list" class="store">
+  <p class="section-label">Store</p>
+  <h2 class="section-title">乃のセレクト</h2>
+  <p class="store-lead">
+    <span>作家の手を経た品々を、</span><span>ものの温度のままお届けします。</span>
+  </p>
+
+  <!-- ▼▼▼ BASE 商品ウィジェット ▼▼▼
+       新商品を追加した時は、下の NANJI_PRODUCTS 配列に商品IDを足すだけ。
+       商品IDは BASE 商品ページのURL末尾の数字（例: /items/140474987 → '140474987'）-->
+  <div class="store-embed">
+    <div class="store-grid" id="storeGrid"></div>
+  </div>
+  <!-- ▲▲▲ BASE 商品ウィジェット ここまで ▲▲▲ -->
+
+  <a href="https://nanji2025.base.shop/" target="_blank" rel="noopener" class="store-more">
+    すべての商品を見る（BASE）→
+  </a>
+</section>
+
+<!-- ============ Journal / Store ============ -->
+<section class="links" style="padding:0;">
+  <div class="links-inner">
+    <a href="https://note.com/nanji2025" target="_blank" rel="noopener" class="link-card" id="journal">
+      <p class="label">Journal</p>
+      <p class="name">note</p>
+      <p class="desc">乃の日々の記録、企画の背景、<br>伊賀から綴る言葉たち。</p>
+    </a>
+    <a href="https://nanji2025.base.shop/" target="_blank" rel="noopener" class="link-card" id="store">
+      <p class="label">Store</p>
+      <p class="name">BASE</p>
+      <p class="desc">作家の手を経た品々を、<br>ものの温度のままお届けします。</p>
+    </a>
+    <a href="https://www.instagram.com/nanji.2025/" target="_blank" rel="noopener" class="link-card" id="instagram">
+      <p class="label">Instagram</p>
+      <p class="name">@nanji.2025</p>
+      <p class="desc">展示風景・作家のいとなみ、<br>日々の更新はこちらから。</p>
+    </a>
+  </div>
+</section>
+
+<!-- ============ Access ============ -->
+<section id="access" class="access">
+  <p class="section-label">Access</p>
+  <h2 class="section-title">Access</h2>
+
+  <dl class="access-info">
+    <div>
+      <dt>住　所</dt>
+      <dd>〒518-0848　三重県伊賀市上野西日南町1769<br>乃 -NANJI-（一乃湯 向かい）</dd>
+    </div>
+    <div>
+      <dt>開館時間</dt>
+      <dd>14:00 – 23:00　／　木曜定休　／　入場無料<br>
+      <span class="access-note">※ 展示期間中のみ開館。会期は <a href="exhibition.html">Exhibition ページ</a> をご参照ください。</span></dd>
+    </div>
+    <div>
+      <dt>お問い合わせ</dt>
+      <dd><a href="mailto:nanji2025.11@gmail.com">nanji2025.11@gmail.com</a></dd>
+    </div>
+  </dl>
+
+  <iframe
+    class="map-frame"
+    src="https://www.google.com/maps?q=%E4%B8%89%E9%87%8D%E7%9C%8C%E4%BC%8A%E8%B3%80%E5%B8%82%E4%B8%8A%E9%87%8E%E8%A5%BF%E6%97%A5%E5%8D%97%E7%94%BA1769%20%E4%B9%83%20NANJI&z=17&output=embed"
+    title="乃 -NANJI- 所在地"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen></iframe>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="site-footer">
+  <div class="footer-logo"><img src="./logo.jpg" alt="乃 -NANJI-"></div>
+  <p>© 2026 NANJI Gallery, Iga.</p>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // Custom slow smooth scroll for in-page anchor links
+  const easeInOutCubic = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+  function slowScrollTo(targetY, duration){
+    const startY = window.pageYOffset;
+    const diff = targetY - startY;
+    let startTime = null;
+    function step(currentTime){
+      if(!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + diff * easeInOutCubic(progress));
+      if(elapsed < duration) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  // ===== BASE 商品ウィジェットの自動展開 =====
+  // 新商品を追加した時は、この配列に BASE の商品IDを追記してください。
+  // 例: 商品ページが https://nanji2025.base.shop/items/140474987 なら '140474987'
+  const NANJI_PRODUCTS = [
+    '140474987',
+  ];
+  const storeGrid = document.getElementById('storeGrid');
+  if (storeGrid) {
+    NANJI_PRODUCTS.forEach(id => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://nanji2025.base.shop/items/${id}/widget/`;
+      iframe.width = 240;
+      iframe.height = 380;
+      iframe.scrolling = 'no';
+      iframe.loading = 'lazy';
+      iframe.title = '乃 -NANJI- 商品';
+      storeGrid.appendChild(iframe);
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href');
+      if(id.length < 2) return;
+      const target = document.querySelector(id);
+      if(!target) return;
+      e.preventDefault();
+      const HEADER_OFFSET = 70; // 固定ヘッダー分のオフセット
+      const top = target.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+      slowScrollTo(top, 1800); // 約1.8秒かけてゆっくりスクロール
+    });
+  });
+</script>
+</body>
+</html>
