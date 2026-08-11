@@ -1,0 +1,56 @@
+name: Sync BASE products
+on:
+  schedule:
+    - cron: '17 * * * *'   # 毎時17分に実行
+  workflow_dispatch:        # 手動トリガーも可能
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch product IDs from BASE sitemap
+        id: fetch
+        run: |
+          IDS=$(curl -s -A "Mozilla/5.0 GitHubActions-nanji2025-sync" https://nanji2025.base.shop/sitemap.xml \
+            | grep -oE '/items/[0-9]+' \
+            | sed 's|/items/||' \
+            | sort -u -r)
+          if [ -z "$IDS" ]; then
+            echo "::error::No product IDs found in BASE sitemap"
+            exit 1
+          fi
+          ARRAY=$(echo "$IDS" | awk '{printf "    '\''%s'\'',\n", $1}')
+          echo "array<<EOF" >> $GITHUB_OUTPUT
+          echo "$ARRAY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "count=$(echo "$IDS" | wc -l | tr -d ' ')" >> $GITHUB_OUTPUT
+      - name: Update index.html
+        run: |
+          python3 - <<'PY'
+          import re, pathlib
+          arr = """${{ steps.fetch.outputs.array }}"""
+          p = pathlib.Path('index.html')
+          html = p.read_text()
+          new_block = f"  // NANJI_PRODUCTS_START\n  const NANJI_PRODUCTS = [\n{arr}  ];\n  // NANJI_PRODUCTS_END"
+          html2 = re.sub(r'  // NANJI_PRODUCTS_START.*?  // NANJI_PRODUCTS_END', new_block, html, flags=re.S)
+          if html != html2:
+              p.write_text(html2)
+              print("updated")
+          else:
+              print("no change")
+          PY
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes."
+          else
+            git add index.html
+            git commit -m "Sync BASE products (${{ steps.fetch.outputs.count }} items)"
+            git push
+          fi

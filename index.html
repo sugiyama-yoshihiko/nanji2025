@@ -773,11 +773,14 @@
     requestAnimationFrame(step);
   }
   // ===== BASE 商品ウィジェットの自動展開 =====
-  // 新商品を追加した時は、この配列に BASE の商品IDを追記してください。
-  // 例: 商品ページが https://nanji2025.base.shop/items/140474987 なら '140474987'
+  // ↓ この配列は GitHub Actions が BASE sitemap から自動同期しています（1時間毎）。
+  //   手動編集不要。BASEに商品を追加すれば自動でHPに反映されます。
+  // NANJI_PRODUCTS_START
   const NANJI_PRODUCTS = [
+    '153040253',
     '140474987',
   ];
+  // NANJI_PRODUCTS_END
   const storeGrid = document.getElementById('storeGrid');
   if (storeGrid) {
     NANJI_PRODUCTS.forEach(id => {
