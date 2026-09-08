@@ -266,3 +266,402 @@ a{color:inherit;text-decoration:none;}
     clip-path:none !important;transition:none !important;
   }
 }
+
+/* ============================================================
+   8. HEADER
+   高さを抑えた固定ヘッダー。地は白のまま、境界は罫線1本だけ。
+============================================================ */
+.hd{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--header-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding-inline:var(--pad-x);
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s ease,background .25s ease;
+}
+.hd.is-scrolled{border-bottom-color:var(--rule);}
+/* ヒーロー上では白抜き。画像の上に載るため */
+.hd.is-over-hero{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;color:#fff;}
+.hd.is-over-hero .hd__link,
+.hd.is-over-hero .hd__mark,
+.hd.is-over-hero .hd__name{color:#fff;}
+.hd.is-over-hero .hd__cta{border-color:rgba(255,255,255,.6);color:#fff;}
+.hd.is-over-hero .hd__toggle span{background:#fff;}
+
+.hd__brand{display:flex;align-items:baseline;gap:9px;}
+.hd__mark{
+  font-family:var(--jp);font-weight:700;font-size:20px;line-height:1;
+  letter-spacing:0;color:var(--ink);
+}
+.hd__name{
+  font-family:var(--en);font-weight:700;font-size:13px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+}
+.hd__nav{display:flex;align-items:center;gap:26px;}
+.hd__link{
+  font-family:var(--en);font-size:11px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink);
+}
+@media (any-hover:hover){
+  .hd__link{transition:opacity .15s ease;}
+  .hd__link:hover{opacity:.5;}
+}
+.hd__cta{
+  font-family:var(--en);font-size:11px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--ink);padding:8px 14px;color:var(--ink);
+}
+@media (any-hover:hover){
+  .hd__cta{transition:background .2s ease,color .2s ease,border-color .2s ease;}
+  .hd__cta:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+}
+.hd__toggle{display:none;width:26px;height:14px;position:relative;}
+.hd__toggle span{
+  position:absolute;left:0;width:100%;height:1.5px;background:var(--ink);
+  transition:transform .3s var(--ease-hover),opacity .2s ease;
+}
+.hd__toggle span:nth-child(1){top:0;}
+.hd__toggle span:nth-child(2){bottom:0;}
+.hd__toggle.is-open span:nth-child(1){top:6px;transform:rotate(45deg);}
+.hd__toggle.is-open span:nth-child(2){bottom:6px;transform:rotate(-45deg);}
+
+/* ============================================================
+   9. HERO
+============================================================ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:calc(var(--header-h) + 40px) var(--pad-x) 0;
+  background:var(--ink);
+  color:#fff;overflow:hidden;
+}
+.hero__media{position:absolute;inset:0;z-index:0;}
+.hero__media img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:0;transform:scale(1.06);
+  transition:opacity 1.2s ease,transform 7s var(--ease-reveal);
+}
+.hero__media.is-loaded img{opacity:.72;transform:scale(1);}
+/* 文字の可読性を担保する暗幕。下ほど濃くする */
+.hero__media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.30) 0%,rgba(0,0,0,.25) 40%,rgba(0,0,0,.60) 100%);
+}
+.hero__inner{
+  position:relative;z-index:2;
+  width:100%;max-width:var(--container);margin-inline:auto;
+  padding-bottom:64px;
+}
+.hero__meta{color:rgba(255,255,255,.8);margin-bottom:22px;}
+.hero__title{margin-bottom:26px;}
+.hero__title .t1{display:block;color:#fff;}
+.hero__title-jp{display:block;color:#fff;margin-top:14px;opacity:.95;}
+.hero__lead{
+  max-width:520px;font-size:14px;line-height:26px;
+  color:rgba(255,255,255,.88);
+}
+
+/* 下端2バー：乃と一乃湯が道を挟んで向かい合う関係の翻訳 */
+.hero__bars{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid rgba(255,255,255,.28);
+}
+.hero__bar{
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-areas:"label arrow" "title arrow";
+  align-items:center;
+  gap:4px 16px;
+  padding:26px var(--pad-x);
+  color:#fff;
+}
+.hero__bar + .hero__bar{border-left:1px solid rgba(255,255,255,.28);}
+.hero__bar-label{grid-area:label;color:rgba(255,255,255,.75);}
+.hero__bar-title{
+  grid-area:title;
+  font-family:var(--jp);font-weight:700;
+  font-size:20px;line-height:1.3;letter-spacing:var(--track);
+}
+.hero__bar-arrow{grid-area:arrow;font-size:20px;}
+@media (any-hover:hover){
+  .hero__bar{transition:background .3s var(--ease-hover);}
+  .hero__bar:hover{background:rgba(255,255,255,.10);}
+  .hero__bar-arrow{transition:transform var(--t-hover) var(--ease-hover);}
+  .hero__bar:hover .hero__bar-arrow{transform:translateX(6px);}
+}
+@media (max-width:640px){
+  .hero__bars{grid-template-columns:1fr;}
+  .hero__bar + .hero__bar{border-left:0;border-top:1px solid rgba(255,255,255,.28);}
+  .hero__bar{padding:20px var(--pad-x);}
+  .hero__bar-title{font-size:17px;}
+  .hero__inner{padding-bottom:40px;}
+}
+
+/* ============================================================
+   10. EXHIBITIONS
+============================================================ */
+.ex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 28px;}
+.ex{display:block;}
+.ex .media{margin-bottom:18px;}
+.ex__tag{display:block;margin-bottom:8px;}
+.ex__date{margin-bottom:6px;}
+.ex__title{margin-bottom:10px;}
+.ex__note{color:var(--ink-mute);}
+@media (any-hover:hover){
+  .ex__title{transition:opacity .2s ease;}
+  .ex:hover .ex__title{opacity:.55;}
+}
+@media (max-width:1024px){ .ex-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:640px){ .ex-grid{grid-template-columns:1fr;gap:44px;} }
+
+/* ============================================================
+   11. STATEMENT
+============================================================ */
+.st{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:72px;}
+.st__quote{color:var(--ink);}
+.st__body p{margin-bottom:1.5em;text-indent:1em;}
+.st__body p:first-child{text-indent:0;}
+.st__sign{
+  display:flex;align-items:baseline;gap:16px;
+  margin-top:36px;padding-top:20px;
+  border-top:1px solid var(--rule);
+  text-indent:0 !important;
+}
+.st__sign-name{font-family:var(--jp);font-weight:700;font-size:15px;letter-spacing:.04em;color:var(--ink);}
+@media (max-width:1024px){ .st{grid-template-columns:1fr;gap:36px;} }
+
+/* ============================================================
+   12. CURATOR
+============================================================ */
+.cur{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:56px;align-items:start;}
+.cur__portrait img{filter:grayscale(1) contrast(1.04);}
+.cur__name{margin:8px 0 6px;}
+.cur__role{display:block;margin-bottom:24px;}
+.cur__bio{margin-bottom:1.2em;}
+.cur__links{
+  display:flex;flex-wrap:wrap;gap:24px;
+  margin-top:28px;padding-top:20px;border-top:1px solid var(--rule);
+}
+@media (max-width:1024px){ .cur{grid-template-columns:1fr;gap:32px;} .cur__portrait{max-width:260px;} }
+
+/* ============================================================
+   13. PROGRAMME
+   色はクールの識別子。装飾には使わない。
+============================================================ */
+.pg__lead{max-width:640px;margin-bottom:40px;}
+.pg{border-top:1px solid var(--ink);}
+.pg__row{
+  display:grid;
+  grid-template-columns:4px 96px 200px 1fr;
+  gap:24px;align-items:baseline;
+  padding:28px 8px;
+  border-bottom:1px solid var(--rule);
+}
+.pg__swatch{
+  align-self:stretch;background:var(--sw);
+  min-height:44px;
+}
+.pg__term{display:block;}
+.pg__term-en{display:block;color:var(--ink);}
+.pg__term-jp{display:block;margin-top:2px;}
+.pg__desc{font-size:14px;line-height:24px;color:var(--ink-body);}
+.pg__cta{display:flex;flex-wrap:wrap;gap:28px;margin-top:40px;}
+@media (max-width:1024px){
+  .pg__row{grid-template-columns:4px 90px 1fr;gap:18px;}
+  .pg__desc{grid-column:2 / -1;padding-top:8px;}
+}
+@media (max-width:640px){
+  .pg__row{grid-template-columns:4px 1fr;gap:14px;padding:22px 4px;}
+  .pg__desc{grid-column:2 / -1;}
+}
+
+/* ============================================================
+   14. THE SPACE
+============================================================ */
+.sp__lead{max-width:600px;margin-bottom:36px;}
+.sp{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  grid-auto-rows:150px;gap:12px;
+}
+.sp__cell{margin:0;}
+.sp__cell--lg{grid-column:span 4;grid-row:span 2;}
+.sp__cell--tall{grid-column:span 2;grid-row:span 2;}
+.sp__cell--wide{grid-column:span 4;grid-row:span 2;}
+.sp__cell{grid-column:span 2;grid-row:span 2;}
+.sp__cell--lg{grid-column:span 4;}
+.sp__cap{
+  position:absolute;left:12px;bottom:10px;z-index:2;
+  color:#fff;opacity:0;
+  text-shadow:0 1px 4px rgba(0,0,0,.5);
+  transition:opacity .25s ease;
+}
+@media (any-hover:hover){ .sp__cell:hover .sp__cap{opacity:1;} }
+.sp__credit{display:block;margin-top:24px;text-align:right;}
+@media (max-width:640px){
+  .sp{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px;gap:8px;}
+  .sp__cell,.sp__cell--lg,.sp__cell--tall,.sp__cell--wide{grid-column:span 1;grid-row:span 2;}
+  .sp__cell--lg{grid-column:span 2;}
+}
+
+/* ============================================================
+   15. ARCHIVE
+   Prada 的な索引。行は罫線だけで区切り、hover で少し押し出す。
+============================================================ */
+.ar{border-top:1px solid var(--ink);}
+.ar__row{
+  display:grid;grid-template-columns:130px 1fr 120px 28px;
+  gap:28px;align-items:baseline;
+  padding:26px 8px;
+  border-bottom:1px solid var(--rule);
+}
+.ar__title-jp{display:block;}
+.ar__title-en{display:block;margin-top:4px;}
+.ar__arrow{text-align:right;color:var(--ink-mute);font-size:16px;}
+@media (any-hover:hover){
+  .ar__row{transition:padding-left .35s var(--ease-hover),background .35s ease;}
+  .ar__row:hover{padding-left:22px;background:var(--paper);}
+  .ar__arrow{transition:transform var(--t-hover) var(--ease-hover),color .2s ease;}
+  .ar__row:hover .ar__arrow{transform:translateX(6px);color:var(--ink);}
+}
+@media (max-width:1024px){
+  .ar__row{grid-template-columns:120px 1fr 24px;gap:20px;}
+  .ar__type{display:none;}
+}
+@media (max-width:640px){
+  .ar__row{grid-template-columns:1fr;gap:8px;padding:20px 4px;}
+  .ar__arrow{display:none;}
+}
+
+/* ============================================================
+   16. JOURNAL
+============================================================ */
+.jn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:64px;}
+.jn__intro p + p{margin-top:1.2em;}
+.jn__list{border-top:1px solid var(--ink);}
+.jn__row{
+  display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:baseline;
+  padding:18px 6px;border-bottom:1px solid var(--rule);
+}
+.jn__title{font-size:14.5px;line-height:24px;color:var(--ink-body);}
+@media (any-hover:hover){
+  .jn__row{transition:padding-left .35s var(--ease-hover),background .3s ease;}
+  .jn__row:hover{padding-left:18px;background:var(--wash);}
+}
+@media (max-width:1024px){ .jn{grid-template-columns:1fr;gap:36px;} }
+
+/* ============================================================
+   17. NEIGHBORHOOD
+   2枚。乃と一乃湯の「対」をそのまま画面の対にする。
+============================================================ */
+.nb{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);}
+.nb__card{
+  background:var(--paper);
+  display:flex;flex-direction:column;gap:14px;
+  padding:64px var(--pad-x);min-height:280px;
+}
+.nb__card--fill{background:var(--c02);color:#fff;}
+.nb__card--fill .label{color:rgba(255,255,255,.85);}
+.nb__title{margin-top:4px;}
+.nb__card--fill .nb__title{color:#fff;}
+.nb__desc{font-size:14px;line-height:24px;color:var(--ink-mute);margin-top:auto;}
+.nb__card--fill .nb__desc{color:rgba(255,255,255,.85);}
+.nb__arrow{align-self:flex-end;font-size:20px;}
+@media (any-hover:hover){
+  .nb__card{transition:background .4s var(--ease-hover),color .4s ease;}
+  .nb__card:hover{background:var(--ink);color:#fff;}
+  .nb__card:hover .nb__title{color:#fff;}
+  .nb__card:hover .nb__desc{color:rgba(255,255,255,.8);}
+  .nb__card:hover .label{color:rgba(255,255,255,.8);}
+  .nb__arrow{transition:transform var(--t-hover) var(--ease-hover);}
+  .nb__card:hover .nb__arrow{transform:translateX(6px);}
+}
+@media (max-width:640px){
+  .nb{grid-template-columns:1fr;}
+  .nb__card{padding:44px var(--pad-x);min-height:0;}
+}
+
+/* ============================================================
+   18. STORE
+============================================================ */
+.store{display:flex;flex-wrap:wrap;gap:24px;margin-top:36px;}
+.store iframe{width:240px;height:380px;max-width:100%;background:var(--paper);}
+/* 商品が0件でも空白に見えないようにする */
+.store:empty::before{
+  content:"商品を読み込んでいます…";
+  font-size:13px;color:var(--ink-mute);
+}
+
+/* ============================================================
+   19. VISIT
+============================================================ */
+.vs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px;}
+.vs__info{border-top:1px solid var(--ink);}
+.vs__info > div{
+  display:grid;grid-template-columns:100px 1fr;gap:20px;
+  padding:20px 4px;border-bottom:1px solid var(--rule);
+}
+.vs__info dt{padding-top:4px;}
+.vs__info dd{font-size:14.5px;line-height:26px;color:var(--ink-body);}
+.vs__info dd .body-s{display:block;margin-top:6px;}
+.vs__map{min-height:420px;}
+.vs__map iframe{width:100%;height:100%;min-height:420px;}
+@media (max-width:1024px){ .vs{grid-template-columns:1fr;gap:36px;} }
+@media (max-width:640px){
+  .vs__info > div{grid-template-columns:1fr;gap:6px;}
+  .vs__map,.vs__map iframe{min-height:320px;}
+}
+
+/* ============================================================
+   20. FOOTER
+============================================================ */
+.ft{background:var(--ink);color:#fff;padding-block:72px 36px;}
+.ft__top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
+  padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.22);
+}
+.ft__mark{font-family:var(--jp);font-weight:700;font-size:40px;line-height:1;letter-spacing:0;}
+.ft__name{color:#fff;margin:6px 0 16px;}
+.ft__tag{color:rgba(255,255,255,.7);}
+.ft__col{display:flex;flex-direction:column;gap:10px;}
+.ft__col h3{color:rgba(255,255,255,.55);margin-bottom:6px;}
+.ft__col a{font-size:13.5px;line-height:22px;color:#fff;}
+.ft__bottom{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  margin-top:28px;
+}
+.ft__bottom .label--mute{color:rgba(255,255,255,.5);}
+@media (max-width:1024px){ .ft__top{grid-template-columns:1fr 1fr;gap:36px;} }
+@media (max-width:640px){
+  .ft__top{grid-template-columns:1fr;gap:32px;}
+  .ft__bottom{flex-direction:column;align-items:flex-start;gap:8px;}
+}
+
+/* ============================================================
+   21. モバイルのナビ展開
+============================================================ */
+@media (max-width:1024px){
+  .hd__nav{gap:18px;}
+  .hd__link{font-size:10.5px;}
+}
+@media (max-width:860px){
+  .hd__toggle{display:block;}
+  .hd__nav{
+    position:fixed;top:var(--header-h);left:0;right:0;
+    flex-direction:column;align-items:flex-start;gap:20px;
+    background:var(--paper);
+    padding:28px var(--pad-x) 36px;
+    border-bottom:1px solid var(--rule);
+    transform:translateY(-110%);
+    transition:transform .45s var(--ease-reveal);
+  }
+  .hd__nav.is-open{transform:translateY(0);}
+  /* 展開中はヒーロー上でも白地なので、文字は黒に戻す */
+  .hd.is-over-hero .hd__nav.is-open .hd__link{color:var(--ink);}
+  .hd.is-over-hero .hd__nav.is-open .hd__cta{color:var(--ink);border-color:var(--ink);}
+  .hd__link{font-size:13px;}
+  .hd__cta{align-self:flex-start;}
+}
