@@ -45,8 +45,11 @@ jobs:
                   print(f"skip {name} (not found)")
                   continue
               src = p.read_text()
+              items = arr.strip('\n')
               block = (f"{indent}// NANJI_PRODUCTS_START\n"
-                       f"{indent}{kw} NANJI_PRODUCTS = [\n{arr}{indent}];\n"
+                       f"{indent}{kw} NANJI_PRODUCTS = [\n"
+                       f"{items}\n"
+                       f"{indent}];\n"
                        f"{indent}// NANJI_PRODUCTS_END")
               out = re.sub(r'[ ]*// NANJI_PRODUCTS_START.*?// NANJI_PRODUCTS_END',
                            block, src, flags=re.S)

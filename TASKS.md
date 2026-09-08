@@ -1,11 +1,11 @@
 # 実装タスク
 
 ## 進行状況
-完了 1 / 全 9    最終更新 2026-09-08 05:10
+完了 2 / 全 9    最終更新 2026-09-08 05:20
 
 ## タスク
 - [x] T01 管理ファイル整備（SPEC/TASKS/PROGRESS/RESUME）
-- [ ] T02 デザイントークン＋共通CSS（preview/style.css）  ← 作業中
+- [x] T02 デザイントークン＋共通CSS（preview/style.css）
 - [ ] T03 ヘッダー＋ヒーロー＋下端2バー
 - [ ] T04 Now on View / Statement / Curator
 - [ ] T05 Programme（4クール色）/ The Space / Archive
