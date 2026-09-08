@@ -28,20 +28,33 @@ jobs:
           echo "$ARRAY" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
           echo "count=$(echo "$IDS" | wc -l | tr -d ' ')" >> $GITHUB_OUTPUT
-      - name: Update index.html
+      - name: Update product lists
         run: |
           python3 - <<'PY'
           import re, pathlib
           arr = """${{ steps.fetch.outputs.array }}"""
-          p = pathlib.Path('index.html')
-          html = p.read_text()
-          new_block = f"  // NANJI_PRODUCTS_START\n  const NANJI_PRODUCTS = [\n{arr}  ];\n  // NANJI_PRODUCTS_END"
-          html2 = re.sub(r'  // NANJI_PRODUCTS_START.*?  // NANJI_PRODUCTS_END', new_block, html, flags=re.S)
-          if html != html2:
-              p.write_text(html2)
-              print("updated")
-          else:
-              print("no change")
+          # 本番は index.html（const 宣言）、プレビューは preview/main.js（var 宣言）。
+          # 宣言キーワードが違うのでファイルごとに置換文を変える。
+          targets = [
+              ('index.html',      '  ', 'const'),
+              ('preview/main.js', '  ', 'var'),
+          ]
+          for name, indent, kw in targets:
+              p = pathlib.Path(name)
+              if not p.exists():
+                  print(f"skip {name} (not found)")
+                  continue
+              src = p.read_text()
+              block = (f"{indent}// NANJI_PRODUCTS_START\n"
+                       f"{indent}{kw} NANJI_PRODUCTS = [\n{arr}{indent}];\n"
+                       f"{indent}// NANJI_PRODUCTS_END")
+              out = re.sub(r'[ ]*// NANJI_PRODUCTS_START.*?// NANJI_PRODUCTS_END',
+                           block, src, flags=re.S)
+              if out != src:
+                  p.write_text(out)
+                  print(f"updated {name}")
+              else:
+                  print(f"no change {name}")
           PY
       - name: Commit if changed
         run: |
@@ -50,7 +63,7 @@ jobs:
           if git diff --quiet; then
             echo "No changes."
           else
-            git add index.html
+            git add index.html preview/main.js
             git commit -m "Sync BASE products (${{ steps.fetch.outputs.count }} items)"
             git push
           fi
