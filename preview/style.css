@@ -1,0 +1,268 @@
+@charset "UTF-8";
+/* ============================================================
+   乃 -NANJI- / style.css
+   設計根拠は SPEC.md を参照。要点だけ以下に再掲する。
+
+   ・字間は全見出し段で -0.04em に統一し、行間は常に fs×0.9。
+     サイズが変わっても「文字の詰まり方」の印象を変えないため。
+     （4段＝年4クール制に由来）
+   ・色は白地＋墨4階調のみ。アクセント4色は伊賀焼の三様相
+     （ビードロ／緋色／焦げ）と隣の湯に由来し、
+     クールと会期の"識別子"としてのみ使う。装飾には使わない。
+   ・動きは 0.85s / easeOutQuart / 0.15s刻みの遅延で順に立ち上げる。
+     一斉に出さないのは、読む順番を身体に伝えるため。
+============================================================ */
+
+/* ------------------------------------------------------------
+   1. トークン
+------------------------------------------------------------ */
+:root{
+  /* 地と墨 */
+  --paper:#FFFFFF;
+  --ink:#000000;
+  --ink-body:#1A1A1A;
+  --ink-mute:#8C8C8C;
+  --rule:#DCDCDC;
+  --wash:#F6F6F4;        /* 面の切り替えはこの一段だけに限定する */
+
+  /* アクセント4色＝年4クール（伊賀焼の三様相＋隣の湯） */
+  --c01:#5E7A52;         /* ビードロ釉 */
+  --c02:#6B8CA3;         /* 湯 */
+  --c03:#A85434;         /* 緋色（火色） */
+  --c04:#3D342C;         /* 焦げ */
+
+  /* 書体 */
+  --en:'Archivo',system-ui,-apple-system,'Helvetica Neue',sans-serif;
+  --jp:'Zen Kaku Gothic New','Hiragino Sans','Noto Sans JP',sans-serif;
+
+  /* 見出し4段：字間は共通、行間は fs×0.9 */
+  --track:-0.04em;
+  --h1:96px;  --h1-lh:86px;
+  --h2:56px;  --h2-lh:50px;
+  --h3:36px;  --h3-lh:32px;
+  --h4:22px;  --h4-lh:20px;
+
+  /* レイアウト */
+  --container:1120px;
+  --pad-x:24px;
+  --sec-y:100px;
+  --header-h:60px;
+
+  /* モーション */
+  --ease-reveal:cubic-bezier(0.165,0.84,0.44,1);
+  --ease-hover:cubic-bezier(0.43,0.42,0.61,1);
+  --t-reveal:.85s;
+  --t-hover:.35s;
+}
+
+@media (max-width:1024px){
+  :root{ --h1:64px; --h1-lh:58px; --h2:42px; --h2-lh:38px;
+         --h3:28px; --h3-lh:25px; --sec-y:80px; }
+}
+@media (max-width:640px){
+  :root{ --h1:40px; --h1-lh:36px; --h2:30px; --h2-lh:27px;
+         --h3:22px; --h3-lh:20px; --h4:18px; --h4-lh:17px;
+         --pad-x:20px; --sec-y:64px; --header-h:54px; }
+}
+
+/* ------------------------------------------------------------
+   2. リセット
+------------------------------------------------------------ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--paper);
+  color:var(--ink-body);
+  font-family:var(--jp);
+  font-size:15px;line-height:26px;
+  font-feature-settings:"palt";
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+ul,ol{list-style:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+iframe{border:0;display:block;}
+
+/* チラつき防止。DOMContentLoaded で .preload を外す */
+.preload *{transition:none !important;animation:none !important;}
+
+/* ------------------------------------------------------------
+   3. タイポグラフィ基本形
+------------------------------------------------------------ */
+.en{font-family:var(--en);}
+.jp{font-family:var(--jp);}
+
+/* 英字見出しは UPPERCASE（Prada の緊張感）、日本語は通常ケース */
+.t1,.t2,.t3,.t4{
+  font-family:var(--en);
+  font-weight:700;
+  letter-spacing:var(--track);
+  text-transform:uppercase;
+  color:var(--ink);
+}
+.t1{font-size:var(--h1);line-height:var(--h1-lh);}
+.t2{font-size:var(--h2);line-height:var(--h2-lh);}
+.t3{font-size:var(--h3);line-height:var(--h3-lh);}
+.t4{font-size:var(--h4);line-height:var(--h4-lh);}
+
+/* 日本語の見出しは同じ字間ルールを共有しつつ、通常ケース */
+.t1-jp,.t2-jp,.t3-jp,.t4-jp{
+  font-family:var(--jp);
+  font-weight:700;
+  letter-spacing:var(--track);
+  text-transform:none;
+  color:var(--ink);
+}
+.t1-jp{font-size:calc(var(--h1) * .72);line-height:1.18;}
+.t2-jp{font-size:calc(var(--h2) * .78);line-height:1.25;}
+.t3-jp{font-size:calc(var(--h3) * .82);line-height:1.35;}
+.t4-jp{font-size:calc(var(--h4) * .88);line-height:1.5;}
+
+/* ラベル：唯一 字間が正の要素。小さい文字の可読性のため */
+.label{
+  font-family:var(--en);
+  font-size:11px;line-height:16px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink);
+}
+.label--mute{color:var(--ink-mute);}
+.label--c01{color:var(--c01);}
+.label--c02{color:var(--c02);}
+.label--c03{color:var(--c03);}
+.label--c04{color:var(--c04);}
+
+.body-s{font-size:13px;line-height:22px;color:var(--ink-mute);}
+.lead{font-size:15px;line-height:28px;color:var(--ink-body);}
+
+/* ------------------------------------------------------------
+   4. リンク
+   下線は background-size で伸ばす（M+ の手法）。
+   text-decoration より制御が効き、hover の伸長が滑らかになる。
+------------------------------------------------------------ */
+a{color:inherit;text-decoration:none;}
+
+.link{
+  background-image:linear-gradient(currentColor,currentColor);
+  background-repeat:no-repeat;
+  background-position:0 100%;
+  background-size:100% 1px;
+  padding-bottom:2px;
+}
+@media (any-hover:hover){
+  .link{transition:background-size .15s ease,color .15s ease;}
+  .link:hover{background-size:0 1px;background-position:100% 100%;}
+}
+
+/* 矢印つきリンク。ラベル体で使う */
+.link-arrow{
+  font-family:var(--en);
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;
+  border-bottom:1px solid currentColor;padding-bottom:4px;
+}
+.link-arrow::after{content:"→";font-size:13px;}
+@media (any-hover:hover){
+  .link-arrow::after{transition:transform var(--t-hover) var(--ease-hover);}
+  .link-arrow:hover::after{transform:translateX(6px);}
+}
+
+/* ------------------------------------------------------------
+   5. レイアウト
+------------------------------------------------------------ */
+.container{
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:var(--pad-x);
+}
+.section{padding-block:var(--sec-y);}
+.section--wash{background:var(--wash);}
+
+/* セクション見出し：英字＋日本語を積み、右にリンク。
+   罫線1本で区切る（面で語らない） */
+.sec-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:24px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:48px;
+}
+.sec-head__jp{
+  display:block;
+  font-family:var(--jp);font-weight:700;
+  font-size:calc(var(--h3) * .5);
+  line-height:1.5;letter-spacing:var(--track);
+  color:var(--ink-mute);
+  text-transform:none;
+  margin-top:10px;
+}
+@media (max-width:640px){
+  .sec-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px;}
+}
+
+/* ------------------------------------------------------------
+   6. 画像の比率は2種のみ（3:2 と 3:4）。
+      比率が揺れないことでページ全体のリズムが安定する。
+------------------------------------------------------------ */
+.ratio-hero{aspect-ratio:16/9;}
+.ratio-card{aspect-ratio:3/2;}
+.ratio-portrait{aspect-ratio:3/4;}
+
+.media{
+  position:relative;overflow:hidden;background:var(--wash);
+}
+.media img{width:100%;height:100%;object-fit:cover;}
+
+/* 画像未入稿でも成立させるプレースホルダ。
+   img が無い、または読めない場合にこの面が見える */
+.media::before{
+  content:attr(data-ph);
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--en);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-mute);
+  background:var(--wash);
+  z-index:0;
+}
+.media img{position:relative;z-index:1;}
+
+@media (any-hover:hover){
+  .media--zoom img{transition:transform .9s var(--ease-hover);}
+  a:hover .media--zoom img,
+  .media--zoom:hover img{transform:scale(1.035);}
+}
+
+/* ------------------------------------------------------------
+   7. モーション：スクロールリビール
+      transform+opacity / 0.85s / easeOutQuart / 0.15s刻みの遅延
+------------------------------------------------------------ */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity var(--t-reveal) var(--ease-reveal),
+             transform var(--t-reveal) var(--ease-reveal);
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* 遅延は最大5段。同一グループ内で読む順に立ち上げる */
+[data-delay="1"]{transition-delay:.15s;}
+[data-delay="2"]{transition-delay:.30s;}
+[data-delay="3"]{transition-delay:.45s;}
+[data-delay="4"]{transition-delay:.60s;}
+
+/* 画像は clip-path で下から開く（M+ の手法） */
+[data-reveal-clip]{
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path .9s var(--ease-reveal);
+  transition-delay:.15s;
+}
+[data-reveal-clip].is-in{clip-path:inset(0 0 0 0);}
+
+/* 動きを減らす設定の利用者には出さない */
+@media (prefers-reduced-motion:reduce){
+  [data-reveal],[data-reveal-clip]{
+    opacity:1 !important;transform:none !important;
+    clip-path:none !important;transition:none !important;
+  }
+}
