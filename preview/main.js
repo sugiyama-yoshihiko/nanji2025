@@ -140,7 +140,8 @@
   // NANJI_PRODUCTS_START
   var NANJI_PRODUCTS = [
     '153040253',
-    '140474987',  ];
+    '140474987',
+  ];
   // NANJI_PRODUCTS_END
 
   var storeGrid = document.getElementById('storeGrid');
